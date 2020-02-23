@@ -8,7 +8,32 @@
   </div>
 </template>
 
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  mounted() {
+    this.getRooms()
+    this.getDevices()
+    this.getAttachments()
+  },
+  methods: {
+    ...mapActions({
+      getRooms: 'rooms/getRooms',
+      getDevices: 'devices/getDevices',
+      getAttachments: 'attachments/getAttachments'
+    })
+  }
+}
+</script>
+
 <style>
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
