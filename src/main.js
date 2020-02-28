@@ -6,10 +6,19 @@ import store from './store'
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import * as ModalDialogs from 'vue-modal-dialogs'
+
+import NavBar from '@/components/NavBar'
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 Vue.use(VueAxios, axios)
+Vue.use(ModalDialogs)
 
 Vue.config.productionTip = false
+Vue.config.ignoredElements = ['ion-icon']
+
+Vue.component('NavBar', NavBar)
+Vue.component('pulse-loader', PulseLoader)
 
 new Vue({
   router,

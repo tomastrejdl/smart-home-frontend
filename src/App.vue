@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <transition :name="transitionName">
+      <router-view />
+    </transition>
+
+    <dialogs-wrapper transition-name="slide"></dialogs-wrapper>
   </div>
 </template>
 
@@ -12,6 +12,9 @@
 import { mapActions } from 'vuex'
 
 export default {
+  data: () => ({
+    transitionName: 'slide-right'
+  }),
   mounted() {
     this.getRooms()
     this.getDevices()
@@ -23,15 +26,20 @@ export default {
       getDevices: 'devices/getDevices',
       getAttachments: 'attachments/getAttachments'
     })
+  },
+  watch: {
+    $route(to, from) {
+      const toDepth = to.path.split('/').length
+      const fromDepth = from.path.split('/').length
+      this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+    }
   }
 }
 </script>
 
 <style>
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
 
 #app {
@@ -42,16 +50,15 @@ export default {
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+ion-icon {
+  margin-bottom: -0.1em;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+button:focus {
+  outline: none;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.btn {
+  @apply bg-blue-500 text-white font-bold rounded px-4 py-1;
 }
 </style>

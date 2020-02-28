@@ -13,6 +13,13 @@ export default {
         attachment => attachment._id === attachmentId
       )
       state.attachments.splice(index, 1)
+    },
+    updateAttachment: (state, attachment) => {
+      state.attachments = [
+        ...state.attachments.map(att =>
+          att._id !== attachment._id ? att : { ...att, ...attachment }
+        )
+      ]
     }
   },
   actions: {
@@ -28,11 +35,11 @@ export default {
         .then(r => r.data)
       commit('addAttachment', createdAttachment)
     },
-    deleteAttachment: async ({ rootGetters, commit }, attachmentId) => {
+    deleteAttachment: async ({ rootGetters, commit }, attachment) => {
       await axios.delete(
-        rootGetters['app/getApiUrl']('attachments/' + attachmentId)
+        rootGetters['app/getApiUrl']('attachments/' + attachment._id)
       )
-      commit('removeAttachmentById', attachmentId)
+      commit('removeAttachmentById', attachment._id)
     },
 
     toggleAttachment: async ({ rootGetters, commit }, attachment) => {
@@ -43,8 +50,7 @@ export default {
           )
         )
         .then(res => {
-          commit('removeAttachmentById', res.data.newValue._id)
-          commit('addAttachment', res.data.newValue)
+          commit('updateAttachment', res.data.newValue)
         })
     }
   },
