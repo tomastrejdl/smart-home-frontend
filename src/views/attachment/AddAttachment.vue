@@ -55,8 +55,12 @@
               id="type"
               v-model="type"
             >
-              <option value="light">Light</option>
-              <option value="socket">Socket</option>
+              <option :value="AttachmentType.LIGHT">Light</option>
+              <option :value="AttachmentType.SOCKET">Smart Socket</option>
+              <option :value="AttachmentType.TEMPERATURE_SENSOR"
+                >Temperature sensor</option
+              >
+              <option :value="AttachmentType.DOOR_SENSOR">Door sensor</option>
             </select>
           </div>
         </div>
@@ -75,8 +79,6 @@
             >
               <option value="1">1</option>
               <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
             </select>
           </div>
         </div>
@@ -96,9 +98,11 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import { AttachmentType } from '../../other/attachment-types'
 
 export default {
   data: () => ({
+    AttachmentType: AttachmentType,
     name: 'Ceiling light',
     type: 'light',
     pinNumber: 1,

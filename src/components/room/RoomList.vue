@@ -9,6 +9,12 @@
       <div class="w-full flex flex-row justify-between items-center">
         <span class="font-bold text-lg">{{ room.name }}</span>
         <button
+          class="hover:bg-yellow-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
+          @click="toggleAllLights(room._id)"
+        >
+          <ion-icon name="bulb-outline"></ion-icon>
+        </button>
+        <button
           class="hover:bg-red-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
           @click="deleteRoom(room._id)"
         >
@@ -20,13 +26,23 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
+
 export default {
   computed: {
-    ...mapState('rooms', ['rooms'])
+    ...mapState('rooms', ['rooms']),
+    ...mapGetters('app', ['getApiUrl'])
   },
   methods: {
-    ...mapActions('rooms', ['getRooms', 'deleteRoom'])
+    ...mapActions('rooms', ['getRooms', 'deleteRoom']),
+    ...mapActions('attachments', ['getAttachments']),
+    async toggleAllLights(roomId) {
+      this.axios
+        .post(this.getApiUrl('rooms/' + roomId + '/toggleAllLights'))
+        .then(res => {
+          this.getAttachments()
+        })
+    }
   },
   mounted() {
     this.getRooms()

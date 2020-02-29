@@ -1,0 +1,23 @@
+<template>
+  <div>
+    <div
+      :class="{
+        'text-yellow-500': attachment.characteristics.isOn.value,
+        'text-black': !attachment.characteristics.isOn.value
+      }"
+    >
+      <ion-icon name="flash-outline" class="text-6xl"></ion-icon>
+    </div>
+    <div>
+      {{ attachment.name }}
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: { attachment: Object }
+}
+</script>
+
+<style></style>
