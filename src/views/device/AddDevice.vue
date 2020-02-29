@@ -2,7 +2,13 @@
   <div>
     <NavBar :links="false" backLink="/devices/search"></NavBar>
     <h1 class="text-center text-2xl w-full">Add device</h1>
-    <form class="w-full">
+    <form
+      class="w-full"
+      @submit="
+        $event.preventDefault()
+        addDevice()
+      "
+    >
       <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label

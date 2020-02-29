@@ -7,7 +7,7 @@
         attachment.type == AttachmentType.LIGHT ||
         attachment.type == AttachmentType.SOCKET
     }"
-    @click="$emit('toggleAttachment', attachment)"
+    @click="attachmentClicked(attachment)"
   >
     <div>
       <Light
@@ -74,6 +74,16 @@ export default {
     manager.on('press', function(e) {
       messageBox('Hello world')
     })
+  },
+  methods: {
+    attachmentClicked(attachment) {
+      if (
+        attachment.type == AttachmentType.LIGHT ||
+        attachment.type == AttachmentType.SOCKET
+      ) {
+        this.$emit('toggleAttachment', attachment)
+      }
+    }
   }
 }
 </script>

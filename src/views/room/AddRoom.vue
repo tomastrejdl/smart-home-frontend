@@ -2,7 +2,13 @@
   <div>
     <NavBar :links="false" backLink="/rooms"></NavBar>
     <h1 class="text-center text-2xl w-full">Add room</h1>
-    <form class="w-full max-w-lg mx-auto">
+    <form
+      class="w-full max-w-lg mx-auto"
+      @submit="
+        $event.preventDefault()
+        addRoom()
+      "
+    >
       <div class="flex flex-col justify-center items-center">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label

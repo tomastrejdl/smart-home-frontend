@@ -1,12 +1,16 @@
 <template>
   <div>
-    <div
-      :class="{
-        'text-yellow-500': attachment.characteristics.isOpen.value,
-        'text-black': !attachment.characteristics.isOpen.value
-      }"
-    >
-      <ion-icon name="square-outline" class="text-6xl"></ion-icon>
+    <div>
+      <ion-icon
+        v-if="attachment.characteristics.isOpen.value"
+        src="/img/door-open-solid.svg"
+        class="text-6xl"
+      ></ion-icon>
+      <ion-icon
+        v-if="!attachment.characteristics.isOpen.value"
+        src="/img/door-closed-solid.svg"
+        class="text-6xl"
+      ></ion-icon>
     </div>
     <div>
       {{ attachment.name }}

@@ -11,7 +11,15 @@
         size="large"
       ></ion-icon>
       <div class="w-full flex flex-row justify-between items-center">
-        <span class="font-bold text-lg"> {{ device.name }}</span>
+        <div>
+          <span class="font-bold text-lg"> {{ device.name }}</span>
+          <span
+            class="font-bold text-red-500"
+            :class="{ 'text-green-500': device.isOnline }"
+          >
+            {{ device.isOnline ? 'online' : 'offline' }}</span
+          >
+        </div>
         <button
           class="hover:bg-red-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
           @click="removeDevice(device)"

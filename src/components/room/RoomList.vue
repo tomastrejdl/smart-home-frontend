@@ -13,6 +13,7 @@
           @click="toggleAllLights(room._id)"
         >
           <ion-icon name="bulb-outline"></ion-icon>
+          <span class="font-bold"> all</span>
         </button>
         <button
           class="hover:bg-red-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
