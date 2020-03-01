@@ -1,15 +1,23 @@
 <template>
   <div
     id="attachment-item"
-    class="border rounded shadow-sm w-full h-full flex flex-col justify-center items-center select-none"
+    class="relative border rounded shadow-sm w-full h-full flex flex-col justify-center items-center select-none"
     :class="{
       'cursor-pointer':
         attachment.type == AttachmentType.LIGHT ||
         attachment.type == AttachmentType.SOCKET
     }"
-    @click="attachmentClicked(attachment)"
   >
-    <div>
+    <router-link
+      class="absolute top-0 right-0 m-2 "
+      :to="{
+        name: 'attachment-detail',
+        params: { attachmentId: attachment._id }
+      }"
+    >
+      <ion-icon name="information-circle-outline" class="text-xl"></ion-icon>
+    </router-link>
+    <div @click="attachmentClicked(attachment)">
       <Light
         v-if="attachment.type == AttachmentType.LIGHT"
         :attachment="attachment"

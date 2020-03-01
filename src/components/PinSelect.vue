@@ -44,10 +44,10 @@ export default {
 
 <style scoped>
 .container input:hover ~ .background {
-  border-color: #ccc;
+  border: 1px solid #ccc;
 }
 
 .container input:checked ~ .background {
-  border-color: #2196f3;
+  border: 2px solid #2196f3;
 }
 </style>

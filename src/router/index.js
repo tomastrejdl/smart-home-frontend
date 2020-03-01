@@ -53,6 +53,14 @@ const routes = [
       )
   },
   {
+    path: '/attachments/:attachmentId',
+    name: 'attachment-detail',
+    component: () =>
+      import(
+        /* webpackChunkName: "attachment-detail" */ '../views/attachment/AttachmentDetail.vue'
+      )
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting

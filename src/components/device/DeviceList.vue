@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="px-4">
     <li
       v-for="device in devices"
       :key="device._id"

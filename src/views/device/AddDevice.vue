@@ -3,7 +3,7 @@
     <NavBar :links="false" backLink="/devices/search"></NavBar>
     <h1 class="text-center text-2xl w-full">Add device</h1>
     <form
-      class="w-full"
+      class="w-full px-4"
       @submit="
         $event.preventDefault()
         addDevice()

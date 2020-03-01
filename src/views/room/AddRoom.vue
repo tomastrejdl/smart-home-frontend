@@ -3,7 +3,7 @@
     <NavBar :links="false" backLink="/rooms"></NavBar>
     <h1 class="text-center text-2xl w-full">Add room</h1>
     <form
-      class="w-full max-w-lg mx-auto"
+      class="w-full max-w-lg mx-auto px-4"
       @submit="
         $event.preventDefault()
         addRoom()

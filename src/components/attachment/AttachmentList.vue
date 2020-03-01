@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="w-full text-right px-4">
+    <div class="w-full text-right px-4 mb-4">
       <button
-        class="bg-blue-300 rounded px-2"
+        class="border border-gray-500 rounded px-2"
         :class="{ 'bg-gray-300': edit }"
         @click="edit = !edit"
       >
