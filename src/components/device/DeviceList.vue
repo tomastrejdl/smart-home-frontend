@@ -3,7 +3,7 @@
     <li
       v-for="device in devices"
       :key="device._id"
-      class="border rounded px-4 py-3 shadow-sm max-w-xs mx-auto my-2 flex flex-row"
+      class="border rounded px-4 py-3 shadow-sm max-w-md mx-auto my-2 flex flex-row"
     >
       <ion-icon
         class="px-3"
@@ -11,15 +11,14 @@
         size="large"
       ></ion-icon>
       <div class="w-full flex flex-row justify-between items-center">
-        <div>
-          <span class="font-bold text-lg"> {{ device.name }}</span>
-          <span
-            class="font-bold text-red-500"
-            :class="{ 'text-green-500': device.isOnline }"
-          >
-            {{ device.isOnline ? 'online' : 'offline' }}</span
-          >
-        </div>
+        <span class="font-bold text-lg"> {{ device.name }}</span>
+        <span class="text-gray-600"> {{ device.macAddress }}</span>
+        <span
+          class="font-bold text-red-500"
+          :class="{ 'text-green-500': device.isOnline }"
+        >
+          {{ device.isOnline ? 'online' : 'offline' }}</span
+        >
         <button
           class="hover:bg-red-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
           @click="removeDevice(device)"

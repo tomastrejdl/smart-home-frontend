@@ -56,6 +56,8 @@ export default {
   },
   getters: {
     getAttachmentById: state => attachmentId =>
-      state.attachments.find(attachment => attachment._id === attachmentId)
+      state.attachments.find(attachment => attachment._id === attachmentId),
+    getAttachmentsByDeviceId: state => deviceId =>
+      state.attachments.filter(attachment => attachment.deviceId === deviceId)
   }
 }
