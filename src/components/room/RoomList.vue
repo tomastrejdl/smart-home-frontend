@@ -3,17 +3,24 @@
     <li
       v-for="room in rooms"
       :key="room._id"
-      class="border rounded px-4 py-3 shadow-sm max-w-xs mx-auto my-2 flex flex-row"
+      class="border rounded px-4 py-3 shadow-sm max-w-md mx-auto my-2 flex flex-row"
     >
       <ion-icon class="px-3" name="bed-outline" size="large"></ion-icon>
       <div class="w-full flex flex-row justify-between items-center">
         <span class="font-bold text-lg">{{ room.name }}</span>
         <button
           class="hover:bg-yellow-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
-          @click="toggleAllLights(room._id)"
+          @click="toggleAllLights(room._id, true)"
         >
           <ion-icon name="bulb-outline"></ion-icon>
-          <span class="font-bold"> all</span>
+          <span class="font-bold"> all on</span>
+        </button>
+        <button
+          class="hover:bg-yellow-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
+          @click="toggleAllLights(room._id, false)"
+        >
+          <ion-icon name="bulb-outline"></ion-icon>
+          <span class="font-bold"> all off</span>
         </button>
         <button
           class="hover:bg-red-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
@@ -37,9 +44,11 @@ export default {
   methods: {
     ...mapActions('rooms', ['getRooms', 'deleteRoom']),
     ...mapActions('attachments', ['getAttachments']),
-    async toggleAllLights(roomId) {
+    async toggleAllLights(roomId, targetState) {
       this.axios
-        .post(this.getApiUrl('rooms/' + roomId + '/toggleAllLights'))
+        .post(this.getApiUrl('rooms/' + roomId + '/toggleAllLights'), {
+          targetState
+        })
         .then(res => {
           this.getAttachments()
         })
