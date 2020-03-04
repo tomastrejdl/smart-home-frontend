@@ -1,5 +1,8 @@
 import axios from 'axios'
 
+/**
+ * Devices Vuex module
+ */
 export default {
   namespaced: true,
   state: {

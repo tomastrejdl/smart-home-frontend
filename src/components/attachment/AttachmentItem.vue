@@ -21,19 +21,19 @@
       <Light
         v-if="attachment.type == AttachmentType.LIGHT"
         :attachment="attachment"
-      ></Light>
+      />
       <Socket
         v-if="attachment.type == AttachmentType.SOCKET"
         :attachment="attachment"
-      ></Socket>
+      />
       <TemperatureSensor
         v-if="attachment.type == AttachmentType.TEMPERATURE_SENSOR"
         :attachment="attachment"
-      ></TemperatureSensor>
+      />
       <DoorSensor
         v-if="attachment.type == AttachmentType.DOOR_SENSOR"
         :attachment="attachment"
-      ></DoorSensor>
+      />
     </div>
 
     <button
@@ -47,8 +47,6 @@
 </template>
 
 <script>
-import Hammer from 'hammerjs'
-
 import Light from './Light'
 import Socket from './Socket'
 import TemperatureSensor from './TemperatureSensor'
@@ -56,11 +54,9 @@ import DoorSensor from './DoorSensor'
 
 import { AttachmentType } from '../../other/attachment-types'
 
-import MessageBox from '../MessageBox'
-import { create } from 'vue-modal-dialogs'
-
-const messageBox = create(MessageBox, 'content')
-
+/**
+ * Displays an Attachment Item
+ */
 export default {
   components: {
     Light,
@@ -68,22 +64,15 @@ export default {
     TemperatureSensor,
     DoorSensor
   },
-  props: { attachment: Object, edit: Boolean },
-  data: () => ({
-    AttachmentType: AttachmentType
-  }),
-  mounted() {
-    const item = document.getElementById('attachment-item')
-    const manager = new Hammer.Manager(item)
-    const Press = new Hammer.Press({
-      time: 700
-    })
-    manager.add(Press)
-    manager.on('press', function(e) {
-      messageBox('Hello world')
-    })
+  props: {
+    attachment: { type: Object, required: true },
+    edit: { type: Boolean, default: false }
   },
   methods: {
+    /**
+     * Emit a toggleAttachment event signaling, that the user has clicked this attachment
+     * @param {*} attachment The attachment that was clicked
+     */
     attachmentClicked(attachment) {
       if (
         attachment.type == AttachmentType.LIGHT ||
@@ -96,4 +85,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped></style>

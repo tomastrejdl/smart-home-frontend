@@ -50,7 +50,6 @@ export default {
     AttachnemtItem
   },
   data: () => ({
-    AttachmentType: AttachmentType,
     edit: false
   }),
   computed: {

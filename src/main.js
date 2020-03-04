@@ -22,6 +22,7 @@ Vue.config.ignoredElements = ['ion-icon']
 Vue.component('NavBar', NavBar)
 Vue.component('pulse-loader', PulseLoader)
 
+// Global definitions available in all components
 Vue.mixin({
   data: () => ({
     AttachmentType: AttachmentType

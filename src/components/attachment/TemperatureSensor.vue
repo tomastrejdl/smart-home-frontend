@@ -21,7 +21,10 @@
 import Chart from 'chart.js'
 
 export default {
-  props: { attachment: Object, detail: { type: Boolean, default: false } },
+  props: {
+    attachment: { type: Object, required: true },
+    detail: { type: Boolean, default: false }
+  },
   mounted() {
     if (this.detail) {
       var ctx = document.getElementById('temperatureChart').getContext('2d')
@@ -70,4 +73,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped></style>

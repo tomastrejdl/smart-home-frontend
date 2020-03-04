@@ -16,8 +16,8 @@
 
 <script>
 export default {
-  props: { attachment: Object }
+  props: { attachment: { type: Object, required: true } }
 }
 </script>
 
-<style></style>
+<style scoped></style>

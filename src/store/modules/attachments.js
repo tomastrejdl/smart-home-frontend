@@ -1,5 +1,8 @@
 import axios from 'axios'
 
+/**
+ * Attachments Vuex module
+ */
 export default {
   namespaced: true,
   state: {
@@ -42,6 +45,10 @@ export default {
       commit('removeAttachmentById', attachment._id)
     },
 
+    /**
+     * Toggle the state of an attachment, switch from ON to OFF and vice versa
+     * @param {Attachment} attachment The attachment to toggle
+     */
     toggleAttachment: async ({ rootGetters, commit }, attachment) => {
       await axios
         .post(
@@ -57,6 +64,10 @@ export default {
   getters: {
     getAttachmentById: state => attachmentId =>
       state.attachments.find(attachment => attachment._id === attachmentId),
+
+    /**
+     * Get all attachments connected to device with ID deviceId
+     */
     getAttachmentsByDeviceId: state => deviceId =>
       state.attachments.filter(attachment => attachment.deviceId === deviceId)
   }

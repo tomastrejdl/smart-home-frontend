@@ -1,5 +1,8 @@
 import axios from 'axios'
 
+/**
+ * Devices Vuex module
+ */
 export default {
   namespaced: true,
   state: {
@@ -26,6 +29,11 @@ export default {
         .then(r => r.data)
       commit('addDevice', createdDevice)
     },
+
+    /**
+     * Delete device and remove all attachments received in the responce (these atachments ware
+     * deleted from the database when their corresponding device was deleted)
+     */
     deleteDevice: async ({ rootGetters, commit }, device) => {
       await axios
         .delete(rootGetters['app/getApiUrl']('devices/' + device._id))
