@@ -1,13 +1,33 @@
 {
-  "name": "smart-home-frontend-final",
+  "name": "smart-home-frontend",
+  "description": "Frontend for Smart Home Platform by Tomáš Trejdl",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --host 0.0.0.0",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomastrejdl/smart-home-frontend"
+  },
+  "keywords": [
+    "smart home",
+    "smart",
+    "home",
+    "smarthome"
+  ],
+  "author": {
+    "name": "Tomáš Trejdl",
+    "email": "tom.trejdl@seznam.cz",
+    "url": "https://github.com/tomastrejdl"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomastrejdl/smart-home-frontend/issues"
+  },
+  "homepage": "https://github.com/tomastrejdl/smart-home-frontend",
   "dependencies": {
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
@@ -39,5 +59,8 @@
     "eslint-plugin-vue": "^6.1.2",
     "prettier": "^1.19.1",
     "vue-template-compiler": "^2.6.11"
+  },
+  "engines": {
+    "node": "12.11.1"
   }
 }
