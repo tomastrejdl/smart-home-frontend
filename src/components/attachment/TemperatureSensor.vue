@@ -20,6 +20,10 @@
 <script>
 import Chart from 'chart.js'
 
+/**
+ * Temperature sensor component
+ * @prop {boolean} detail If true, displays a temperature graph, otherwise just temperature and humidity values
+ */
 export default {
   props: {
     attachment: { type: Object, required: true },

@@ -15,6 +15,10 @@
 </template>
 
 <script>
+/**
+ * Socket component
+ * Shows the state ON/OFF
+ */
 export default {
   props: { attachment: { type: Object, required: true } }
 }

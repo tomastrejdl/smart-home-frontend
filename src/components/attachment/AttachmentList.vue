@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="w-full text-right px-4 mb-4">
+      <!-- TOGGLE EDIT MODE -->
       <button
         class="border border-gray-500 rounded px-2"
         :class="{ 'bg-gray-300': edit }"
@@ -9,6 +10,7 @@
         EDIT
       </button>
     </div>
+
     <div class="px-8 sm:px-32 lg:px-64">
       <ul class="list grid gap-4">
         <li
@@ -19,6 +21,7 @@
             'col-span-2': attachment.type == AttachmentType.TEMPERATURE_SENSOR
           }"
         >
+          <!-- THE ATTACHMENT ITEM -->
           <AttachnemtItem
             :attachment="attachment"
             :edit="edit"
@@ -26,7 +29,9 @@
             @deleteAttachment="deleteAttachment"
           ></AttachnemtItem>
         </li>
+
         <li class="h-32 min-w-full mx-auto">
+          <!-- ADD NEW ATTACHMENT LINK -->
           <router-link
             to="attachments/add"
             class="w-full h-full flex flex-col justify-center items-center cursor-pointer select-none"
@@ -45,6 +50,9 @@ import AttachnemtItem from './AttachmentItem'
 import { mapState, mapActions, mapGetters } from 'vuex'
 import { AttachmentType } from '../../other/attachment-types'
 
+/**
+ * A list of Attachments
+ */
 export default {
   components: {
     AttachnemtItem

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBar :links="false" backLink="/devices/search"></NavBar>
+    <NavBar :links="false" backLink="/devices/search" />
     <h1 class="text-center text-2xl w-full">Add device</h1>
     <form
       class="w-full px-4"
@@ -10,6 +10,8 @@
       "
     >
       <div class="flex flex-wrap -mx-3 mb-6">
+        
+        <!-- DEVICE NAME INPUT -->
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -25,6 +27,8 @@
             v-model="name"
           />
         </div>
+
+        <!-- ROOM SELECT -->
         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -45,6 +49,8 @@
             </select>
           </div>
         </div>
+
+        <!-- ADD DEVICE BUTTON -->
         <div class="flex items-center justify-between">
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -62,6 +68,9 @@
 <script>
 import { mapActions, mapState, mapGetters } from 'vuex'
 
+/**
+ * Configure a new Device to be used with the system
+ */
 export default {
   data: () => ({
     name: 'Bedroom Controller',
@@ -72,6 +81,9 @@ export default {
   },
   methods: {
     ...mapActions('devices', ['createDevice']),
+    /**
+     * Create a Device with the specified name, add it to the specified Room
+     */
     addDevice() {
       this.createDevice({
         name: this.name,

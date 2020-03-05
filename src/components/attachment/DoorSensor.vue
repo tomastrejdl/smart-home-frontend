@@ -19,6 +19,10 @@
 </template>
 
 <script>
+/**
+ * Door sensor component
+ * shows the state open/closed
+ */
 export default {
   props: { attachment: { type: Object, required: true } }
 }

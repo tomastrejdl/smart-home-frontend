@@ -8,6 +8,8 @@
       <ion-icon class="px-3" name="bed-outline" size="large"></ion-icon>
       <div class="w-full flex flex-row justify-between items-center">
         <span class="font-bold text-lg">{{ room.name }}</span>
+
+        <!-- TURN ALL LIGHTS IN THE ROOM ON -->
         <button
           class="hover:bg-yellow-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
           @click="toggleAllLights(room._id, true)"
@@ -15,6 +17,8 @@
           <ion-icon name="bulb-outline"></ion-icon>
           <span class="font-bold"> all on</span>
         </button>
+
+        <!-- TURN ALL LIGHTS IN THE ROOM OFF -->
         <button
           class="hover:bg-yellow-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
           @click="toggleAllLights(room._id, false)"
@@ -22,6 +26,8 @@
           <ion-icon name="bulb-outline"></ion-icon>
           <span class="font-bold"> all off</span>
         </button>
+
+        <!-- DELETE ROOM -->
         <button
           class="hover:bg-red-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
           @click="deleteRoom(room._id)"
@@ -36,6 +42,9 @@
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
 
+/**
+ * List of Rooms
+ */
 export default {
   computed: {
     ...mapState('rooms', ['rooms']),

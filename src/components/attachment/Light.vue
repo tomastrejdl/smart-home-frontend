@@ -15,6 +15,10 @@
 </template>
 
 <script>
+/**
+ * Light component
+ * Shows the state ON/OFF
+ */
 export default {
   props: { attachment: { type: Object, required: true } }
 }

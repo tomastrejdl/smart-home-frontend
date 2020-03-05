@@ -3,8 +3,6 @@
     <transition :name="transitionName">
       <router-view />
     </transition>
-
-    <dialogs-wrapper transition-name="slide"></dialogs-wrapper>
   </div>
 </template>
 
@@ -16,6 +14,7 @@ export default {
     transitionName: 'slide-right'
   }),
   mounted() {
+    // LOAD DATA FROM API
     this.getRooms()
     this.getDevices()
     this.getAttachments()

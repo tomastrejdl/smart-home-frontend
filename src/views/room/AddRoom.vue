@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBar :links="false" backLink="/rooms"></NavBar>
+    <NavBar :links="false" backLink="/rooms" />
     <h1 class="text-center text-2xl w-full">Add room</h1>
     <form
       class="w-full max-w-lg mx-auto px-4"
@@ -10,6 +10,7 @@
       "
     >
       <div class="flex flex-col justify-center items-center">
+        <!-- ROOM NAME INPUT -->
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -25,6 +26,8 @@
             v-model="name"
           />
         </div>
+
+        <!-- ADD ROOM BUTTON -->
         <div class="flex items-center justify-between">
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -42,6 +45,9 @@
 <script>
 import { mapActions } from 'vuex'
 
+/**
+ * Create a new Room
+ */
 export default {
   data: () => ({
     name: 'Bedroom'
@@ -49,6 +55,9 @@ export default {
 
   methods: {
     ...mapActions('rooms', ['createRoom']),
+    /**
+     * Create the room with the entered name
+     */
     addRoom() {
       this.createRoom({ name: this.name }).then(() =>
         this.$router.push('/rooms')

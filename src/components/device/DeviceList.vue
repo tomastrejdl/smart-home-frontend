@@ -33,6 +33,9 @@
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
 
+/**
+ * List of Devices
+ */
 export default {
   computed: {
     ...mapState('devices', ['devices']),

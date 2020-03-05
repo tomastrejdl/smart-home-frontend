@@ -1,7 +1,9 @@
 <template>
   <div>
-    <NavBar></NavBar>
-    <DeviceList></DeviceList>
+    <NavBar />
+
+    <DeviceList />
+
     <router-link
       to="/devices/search"
       class="px-4 py-3 max-w-xs mx-auto my-2 flex flex-row"
@@ -17,6 +19,9 @@
 <script>
 import DeviceList from '@/components/device/DeviceList'
 
+/**
+ * Device management, create, view, update and delete Devices
+ */
 export default {
   components: {
     DeviceList

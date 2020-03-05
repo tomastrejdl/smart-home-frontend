@@ -1,7 +1,9 @@
 <template>
   <div>
-    <NavBar></NavBar>
-    <RoomList></RoomList>
+    <NavBar />
+
+    <RoomList />
+
     <router-link
       to="/rooms/add"
       class="px-4 py-3 max-w-xs mx-auto my-2 flex flex-row"
@@ -17,6 +19,9 @@
 <script>
 import RoomList from '@/components/room/RoomList'
 
+/**
+ * Room management, create, view, update and delete Rooms
+ */
 export default {
   components: {
     RoomList

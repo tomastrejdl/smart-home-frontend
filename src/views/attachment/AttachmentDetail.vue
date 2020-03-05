@@ -1,28 +1,33 @@
 <template>
   <div v-if="attachment">
-    <NavBar :links="false" backLink="/"></NavBar>
+    <NavBar :links="false" backLink="/" />
+
     <h1 class="text-center text-2xl w-full">{{ attachment.name }}</h1>
+
     <div>
       <Light
         v-if="attachment.type == AttachmentType.LIGHT"
         :attachment="attachment"
         :detail="true"
-      ></Light>
+      />
+
       <Socket
         v-if="attachment.type == AttachmentType.SOCKET"
         :attachment="attachment"
         :detail="true"
-      ></Socket>
+      />
+
       <TemperatureSensor
         v-if="attachment.type == AttachmentType.TEMPERATURE_SENSOR"
         :attachment="attachment"
         :detail="true"
-      ></TemperatureSensor>
+      />
+
       <DoorSensor
         v-if="attachment.type == AttachmentType.DOOR_SENSOR"
         :attachment="attachment"
         :detail="true"
-      ></DoorSensor>
+      />
     </div>
   </div>
 </template>
@@ -35,6 +40,9 @@ import Socket from '../../components/attachment/Socket'
 import TemperatureSensor from '../../components/attachment/TemperatureSensor'
 import DoorSensor from '../../components/attachment/DoorSensor'
 
+/**
+ * A Detailed view of an Attachment
+ */
 export default {
   components: {
     Light,

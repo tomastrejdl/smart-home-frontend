@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBar :links="false" backLink="/"></NavBar>
+    <NavBar :links="false" backLink="/" />
     <h1 class="text-center text-2xl w-full">Add attachment</h1>
     <form
       class="w-full max-w-lg mx-auto px-4"
@@ -10,6 +10,7 @@
       "
     >
       <div class="flex flex-col items-center -mx-3 mb-6">
+        <!-- ATTACHMENT NAME INPUT -->
         <div class="w-full px-3 mb-6 md:mb-0">
           <label
             class="block uppercase tracking-wide text-left text-gray-700 text-xs font-bold mb-2"
@@ -25,6 +26,8 @@
             v-model="name"
           />
         </div>
+
+        <!-- DEVICE SELECT -->
         <div class="w-full px-3 mb-6 md:mb-0">
           <label
             class="block uppercase tracking-wide text-left text-gray-700 text-xs font-bold mb-2"
@@ -61,6 +64,8 @@
             </div>
           </div>
         </div>
+
+        <!-- ATTACHMENT TYPE SELECT -->
         <div class="w-full px-3 mb-6 md:mb-0">
           <label
             class="block uppercase tracking-wide text-left text-gray-700 text-xs font-bold mb-2"
@@ -97,12 +102,14 @@
           </div>
         </div>
 
+        <!-- PIN SELECT -->
         <PinSelect
           v-model="pin"
-          :type="type"
+          :attachmentType="type"
           :availablePins="availablePins"
         ></PinSelect>
 
+        <!-- ADD ATTACHMENT BUTTON -->
         <div class="flex items-center justify-between">
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
@@ -122,6 +129,9 @@ import { mapActions, mapState, mapGetters } from 'vuex'
 import { AttachmentType } from '../../other/attachment-types'
 import PinSelect from '../../components/PinSelect'
 
+/**
+ * Configure a new Attachment
+ */
 export default {
   components: { PinSelect },
   data: () => ({
@@ -135,6 +145,9 @@ export default {
     ...mapState('rooms', ['rooms']),
     ...mapState('devices', ['devices']),
     ...mapGetters('attachments', ['getAttachmentsByDeviceId']),
+    /**
+     * Some Attachments are only alailable in some pins
+     */
     compatiblePins() {
       switch (this.type) {
         case AttachmentType.TEMPERATURE_SENSOR:
@@ -145,6 +158,9 @@ export default {
           return ['D1', 'D2', 'D3', 'D4']
       }
     },
+    /**
+     * Filter pins that are available on the selected Device
+     */
     availablePins() {
       if (this.deviceId) {
         return this.compatiblePins.filter(
@@ -157,13 +173,18 @@ export default {
     }
   },
   updated() {
+    // If not defined, select the first Device in the list
     if (this.deviceId == null && this.devices.length > 0)
       this.deviceId = this.devices[0]._id
+    // If not defined, select the first Pin in the list
     if (this.pin == null && this.availablePins.length > 0)
       this.pin = this.availablePins[0]
   },
   methods: {
     ...mapActions('attachments', ['createAttachment']),
+    /**
+     * Create a new Attachment
+     */
     addAttachment() {
       this.createAttachment({
         name: this.name,
@@ -175,7 +196,9 @@ export default {
   },
   watch: {
     type(newValue, oldValue) {
+      // Temperature sensor is only available on pin 'D3'
       if (newValue == AttachmentType.TEMPERATURE_SENSOR) this.pin = 'D3'
+      // Door sensor is only available on pin 'D4'
       if (newValue == AttachmentType.DOOR_SENSOR) this.pin = 'D4'
     }
   }

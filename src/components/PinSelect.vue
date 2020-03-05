@@ -13,8 +13,8 @@
           :checked="pin == value"
           @input="$emit('input', $event.target.value)"
           :disabled="
-            type == AttachmentType.TEMPERATURE_SENSOR ||
-              type == AttachmentType.DOOR_SENSOR
+            attachmentType == AttachmentType.TEMPERATURE_SENSOR ||
+              attachmentType == AttachmentType.DOOR_SENSOR
           "
           class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
         />
@@ -37,8 +37,12 @@
 </template>
 
 <script>
+/**
+ * A restyled radio button group, to select pins on Devices
+ * Works just like radio buttons, just styled to be clickable buttons
+ */
 export default {
-  props: { value: String, availablePins: Array, type: String }
+  props: { value: String, availablePins: Array, attachmentType: String }
 }
 </script>
 

@@ -1,3 +1,7 @@
+/**
+ * App Vuex module
+ * Houses global configuration and state
+ */
 export default {
   namespaced: true,
   state: {
