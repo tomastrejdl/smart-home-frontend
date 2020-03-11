@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="dataLoaded">
     <transition :name="transitionName">
       <router-view />
     </transition>
@@ -11,13 +11,15 @@ import { mapActions } from 'vuex'
 
 export default {
   data: () => ({
-    transitionName: 'slide-right'
+    transitionName: 'slide-right',
+    dataLoaded: false
   }),
-  mounted() {
+  async mounted() {
     // LOAD DATA FROM API
-    this.getRooms()
-    this.getDevices()
-    this.getAttachments()
+    await this.getRooms()
+    await this.getDevices()
+    await this.getAttachments()
+    this.dataLoaded = true
   },
   methods: {
     ...mapActions({

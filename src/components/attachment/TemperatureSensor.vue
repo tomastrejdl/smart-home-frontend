@@ -1,6 +1,19 @@
 <template>
-  <div v-if="detail">
-    <canvas id="temperatureChart" width="400" height="400"></canvas>
+  <div v-if="detail" class="p-4">
+    <div class="w-full flex justify-center m-2">
+      <ion-icon name="thermometer-outline" class="text-6xl"></ion-icon>
+      <div class="flex flex-col flex-grow-1">
+        <span>Room: {{}}</span>
+        <span
+          >Temperature: {{ attachment.characteristics.temperature.value }}
+          {{
+            attachment.characteristics.temperature.units == 'celsius' && 'ºC'
+          }}</span
+        >
+        <span>Humidity: {{ attachment.characteristics.humidity.value }}%</span>
+      </div>
+    </div>
+    <div id="plot" class="w-full h-full"></div>
   </div>
   <div v-else class="w-full flex">
     <ion-icon name="thermometer-outline" class="text-6xl"></ion-icon>
@@ -18,7 +31,8 @@
 </template>
 
 <script>
-import Chart from 'chart.js'
+import Plotly from 'plotly.js-dist'
+import { mapGetters } from 'vuex'
 
 /**
  * Temperature sensor component
@@ -29,48 +43,65 @@ export default {
     attachment: { type: Object, required: true },
     detail: { type: Boolean, default: false }
   },
-  mounted() {
+  data: () => ({
+    temperatureData: []
+  }),
+  computed: {
+    ...mapGetters('app', ['getApiUrl'])
+  },
+  async mounted() {
     if (this.detail) {
-      var ctx = document.getElementById('temperatureChart').getContext('2d')
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [
-            {
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-            }
-          ]
+      this.temperatureData = (
+        await this.axios.get(
+          this.getApiUrl('attachments/' + this.$route.params.attachmentId) +
+            '/getTemperatureData'
+        )
+      ).data
+
+      const labels = this.temperatureData.values.map(value => value.timestamp)
+      const tempData = this.temperatureData.values.map(
+        value => value.temperature
+      )
+      const humidityData = this.temperatureData.values.map(
+        value => value.humidity
+      )
+
+      const temperature = {
+        x: labels,
+        y: tempData,
+        fill: 'tozeroy',
+        type: 'scatter',
+        mode: 'lines',
+        line: { shape: 'linear', color: 'orange' }
+      }
+
+      const humidity = {
+        x: labels,
+        y: humidityData,
+        type: 'scatter',
+        mode: 'lines',
+        yaxis: 'y2',
+        line: { shape: 'linear', color: 'royalblue' }
+      }
+
+      const layout = {
+        yaxis: {
+          title: 'Temperature',
+          titlefont: { color: 'darkorange' },
+          tickfont: { color: 'darkorange' }
         },
-        options: {
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true
-                }
-              }
-            ]
-          }
-        }
+        yaxis2: {
+          title: 'Humidity',
+          titlefont: { color: 'royalblue' },
+          tickfont: { color: 'royalblue' },
+          overlaying: 'y',
+          side: 'right'
+        },
+        showlegend: false
+      }
+
+      Plotly.newPlot('plot', [temperature, humidity], layout, {
+        staticPlot: true
       })
     }
   }

@@ -1,33 +1,39 @@
 <template>
-  <div v-if="attachment">
+  <div>
     <NavBar :links="false" backLink="/" />
+    <div v-if="attachment">
+      <h1 class="text-center text-2xl w-full">{{ attachment.name }}</h1>
 
-    <h1 class="text-center text-2xl w-full">{{ attachment.name }}</h1>
+      <div>
+        <Light
+          v-if="attachment.type == AttachmentType.LIGHT"
+          :attachment="attachment"
+          :detail="true"
+        />
 
-    <div>
-      <Light
-        v-if="attachment.type == AttachmentType.LIGHT"
-        :attachment="attachment"
-        :detail="true"
-      />
+        <Socket
+          v-if="attachment.type == AttachmentType.SOCKET"
+          :attachment="attachment"
+          :detail="true"
+        />
 
-      <Socket
-        v-if="attachment.type == AttachmentType.SOCKET"
-        :attachment="attachment"
-        :detail="true"
-      />
+        <TemperatureSensor
+          v-if="attachment.type == AttachmentType.TEMPERATURE_SENSOR"
+          :attachment="attachment"
+          :detail="true"
+        />
 
-      <TemperatureSensor
-        v-if="attachment.type == AttachmentType.TEMPERATURE_SENSOR"
-        :attachment="attachment"
-        :detail="true"
-      />
-
-      <DoorSensor
-        v-if="attachment.type == AttachmentType.DOOR_SENSOR"
-        :attachment="attachment"
-        :detail="true"
-      />
+        <DoorSensor
+          v-if="attachment.type == AttachmentType.DOOR_SENSOR"
+          :attachment="attachment"
+          :detail="true"
+        />
+      </div>
+    </div>
+    <div v-else>
+      <h1 class="text-center text-2xl w-full">
+        Attachment {{ $route.params.attachmentId }} not found
+      </h1>
     </div>
   </div>
 </template>

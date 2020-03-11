@@ -1,6 +1,5 @@
 <template>
   <nav class="flex flex-wrap items-center justify-between p-4">
-
     <!-- GLOBAL NAVIGATION -->
     <div
       class="order-2 w-1/3 text-center font-bold flex justify-center items-center"
