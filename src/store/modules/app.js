@@ -7,8 +7,8 @@ export default {
   state: {
     apiUrl:
       process.env.NODE_ENV !== 'production'
-        ? 'https://smarthome.local/api'
-        : 'https://localhost:3000/api',
+        ? 'http://smarthome.local/api'
+        : 'http://localhost:3000/api',
     apiVersion: 'v1'
   },
   mutations: {},
