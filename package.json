@@ -9,7 +9,7 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve --host 0.0.0.0",
-    "build": "vue-cli-service build",
+    "build": "NODE_OPTIONS=--max_old_space_size=1000 vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
