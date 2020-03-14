@@ -6,8 +6,8 @@ export default {
   namespaced: true,
   state: {
     apiUrl:
-      process.env.NODE_ENV !== 'production'
-        ? 'http://smarthome.local/api'
+      process.env.NODE_ENV == 'production'
+        ? window.origin + '/api'
         : 'http://localhost:3000/api',
     apiVersion: 'v1'
   },
