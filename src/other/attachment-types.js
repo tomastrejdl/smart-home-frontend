@@ -5,9 +5,15 @@
  *    import AttachmentType from './attachment-types.js
  *    <div v-if="attachment.type == AttachmentType.LIGHT">...</div>
  */
+const light = 'light',
+  socket = 'socket',
+  temperatureSensor = 'temperature-sensor',
+  doorSensor = 'door-sensor'
+
 export const AttachmentType = {
-  LIGHT: 'light',
-  SOCKET: 'socket',
-  TEMPERATURE_SENSOR: 'temperature-sensor',
-  DOOR_SENSOR: 'door-sensor'
+  ALL: [light, socket, temperatureSensor, doorSensor],
+  LIGHT: light,
+  SOCKET: socket,
+  TEMPERATURE_SENSOR: temperatureSensor,
+  DOOR_SENSOR: doorSensor
 }

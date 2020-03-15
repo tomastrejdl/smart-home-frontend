@@ -16,19 +16,26 @@
       <router-link
         v-if="backLink"
         :to="backLink"
-        class="text-2xl inline-block mt-0 mr-10 text-blue-900 hover:text-blue-700"
+        class="text-2xl inline-block mt-0 mr-10"
       >
         <ion-icon name="arrow-back-outline"></ion-icon>
       </router-link>
     </div>
 
     <!-- OTHER NAVIGATION -->
-    <div class="navbar-menu order-3 w-1/3 text-right">
-      <!-- <a
-        class="block lg:inline-block mt-4 lg:mt-0 mr-10 text-blue-900 hover:text-blue-700"
-        href="#"
-        >Blog</a
-      > -->
+    <div class="navbar-menu order-3 text-right w-1/3">
+      <ul class="flex flex-row justify-end">
+        <li v-for="item in menuItems" :key="item.name">
+          <button
+            @click="item.action()"
+            class="px-4 border border-transparent rounded hover:border-gray-500 bg-transparent active:bg-gray-300"
+            :class="item.classes"
+          >
+            <ion-icon :name="item.icon"></ion-icon>
+            {{ item.name }}
+          </button>
+        </li>
+      </ul>
     </div>
   </nav>
 </template>
@@ -44,7 +51,11 @@ export default {
       type: Boolean,
       default: true
     },
-    backLink: String
+    backLink: String,
+    menuItems: {
+      type: Array,
+      default: null
+    }
   }
 }
 </script>

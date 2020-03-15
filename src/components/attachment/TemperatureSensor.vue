@@ -3,7 +3,7 @@
     <div class="w-full flex justify-center m-2">
       <ion-icon name="thermometer-outline" class="text-6xl"></ion-icon>
       <div class="flex flex-col flex-grow-1">
-        <span>Room: {{}}</span>
+        <span>Room: {{ attachment.room.name }}</span>
         <span
           >Temperature: {{ attachment.characteristics.temperature.value }}
           {{
@@ -47,7 +47,8 @@ export default {
     temperatureData: []
   }),
   computed: {
-    ...mapGetters('app', ['getApiUrl'])
+    ...mapGetters('app', ['getApiUrl']),
+    ...mapGetters('attachments', ['getAtachmentRoom'])
   },
   async mounted() {
     if (this.detail) {
@@ -57,6 +58,8 @@ export default {
             '/getTemperatureData'
         )
       ).data
+
+      if (this.temperatureData == 'NO DATA') return
 
       const labels = this.temperatureData.values.map(value => value.timestamp)
       const tempData = this.temperatureData.values.map(

@@ -59,6 +59,15 @@ export default {
         .then(res => {
           commit('updateAttachment', res.data.newValue)
         })
+    },
+
+    /* Invert the characteristic of an Attachment (e.g., flip open/closed)*/
+    invertCharacteristic: async ({ rootGetters, commit }, attachment) => {
+      await axios.post(
+        rootGetters['app/getApiUrl'](
+          'attachments/' + attachment._id + '/invertCharacteristic'
+        )
+      )
     }
   },
   getters: {
