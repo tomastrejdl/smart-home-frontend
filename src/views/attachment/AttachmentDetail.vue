@@ -29,6 +29,17 @@
           :detail="true"
         />
       </div>
+
+      <Toggle
+        v-if="
+          this.attachment.type == AttachmentType.LIGHT ||
+            this.attachment.type == AttachmentType.SOCKET
+        "
+        onText="on"
+        offText="off"
+        @input="toggleChange"
+        :value="this.attachment.characteristics.isOn.value"
+      ></Toggle>
     </div>
     <div v-else>
       <h1 class="text-center text-2xl w-full">
@@ -99,7 +110,15 @@ export default {
       'deleteAttachment',
       'toggleAttachment',
       'invertCharacteristic'
-    ])
+    ]),
+    toggleChange() {
+      console.log('toggle')
+      this.toggleAttachment(this.attachment).then(() => {
+        this.attachment = this.getAttachmentById(
+          this.$route.params.attachmentId
+        )
+      })
+    }
   }
 }
 </script>

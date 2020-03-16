@@ -3,8 +3,8 @@
     <div class="w-full text-right px-4 mb-4">
       <!-- TOGGLE EDIT MODE -->
       <button
-        class="border border-gray-500 rounded px-2"
-        :class="{ 'bg-gray-300': edit }"
+        class="px-4 py-1 rounded"
+        :class="{ 'bg-gray-200': edit }"
         @click="edit = !edit"
       >
         EDIT
@@ -12,7 +12,7 @@
     </div>
 
     <div class="px-8 sm:px-32 lg:px-64">
-      <ul class="list grid gap-4">
+      <transition-group tag="ul" name="fade" class="list grid gap-4">
         <li
           v-for="attachment in attachments"
           :key="attachment._id"
@@ -30,17 +30,17 @@
           ></AttachnemtItem>
         </li>
 
-        <li class="h-32 min-w-full mx-auto">
+        <li class="h-32 min-w-full mx-auto" key="button">
           <!-- ADD NEW ATTACHMENT LINK -->
           <router-link
             to="attachments/add"
-            class="w-full h-full flex flex-col justify-center items-center cursor-pointer select-none"
+            class="w-full h-full flex flex-col justify-center items-center cursor-pointer select-none clickable-flex-5"
           >
             <ion-icon name="add-circle-outline" class="text-5xl"></ion-icon>
             <span class="mt-4">New attachment</span>
           </router-link>
         </li>
-      </ul>
+      </transition-group>
     </div>
   </div>
 </template>

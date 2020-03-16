@@ -112,7 +112,7 @@
         <!-- ADD ATTACHMENT BUTTON -->
         <div class="flex items-center justify-between">
           <button
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
+            class="bg-blue-500 text-white font-bold py-2 px-4 m-2 rounded clickable-5"
             type="button"
             @click="addAttachment()"
           >
@@ -171,6 +171,14 @@ export default {
         )
       } else return []
     }
+  },
+  mounted() {
+    // If not defined, select the first Device in the list
+    if (this.deviceId == null && this.devices.length > 0)
+      this.deviceId = this.devices[0]._id
+    // If not defined, select the first Pin in the list
+    if (this.pin == null && this.availablePins.length > 0)
+      this.pin = this.availablePins[0]
   },
   updated() {
     // If not defined, select the first Device in the list

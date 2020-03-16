@@ -30,7 +30,7 @@
         <!-- ADD ROOM BUTTON -->
         <div class="flex items-center justify-between">
           <button
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            class="bg-blue-500 text-white font-bold py-2 px-4 m-2 rounded clickable-5"
             type="button"
             @click="addRoom()"
           >

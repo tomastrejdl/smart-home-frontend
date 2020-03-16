@@ -50,7 +50,7 @@ export default {
      * @param {Attachment} attachment The attachment to toggle
      */
     toggleAttachment: async ({ rootGetters, commit }, attachment) => {
-      await axios
+      return await axios
         .post(
           rootGetters['app/getApiUrl'](
             'attachments/' + attachment._id + '/toggle'

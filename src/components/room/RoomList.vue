@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <transition-group tag="ul" name="fade">
     <li
       v-for="room in rooms"
       :key="room._id"
@@ -11,7 +11,7 @@
 
         <!-- TURN ALL LIGHTS IN THE ROOM ON -->
         <button
-          class="hover:bg-yellow-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
+          class="font-bold py-1 px-2 rounded-full focus:outline-none"
           @click="toggleAllLights(room._id, true)"
         >
           <ion-icon name="bulb-outline"></ion-icon>
@@ -20,7 +20,7 @@
 
         <!-- TURN ALL LIGHTS IN THE ROOM OFF -->
         <button
-          class="hover:bg-yellow-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
+          class="font-bold py-1 px-2 rounded-full focus:outline-none"
           @click="toggleAllLights(room._id, false)"
         >
           <ion-icon name="bulb-outline"></ion-icon>
@@ -29,14 +29,29 @@
 
         <!-- DELETE ROOM -->
         <button
-          class="hover:bg-red-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
+          class="hover:bg-red-400 font-bold py-1 px-2 rounded-full focus:outline-none"
           @click="deleteRoom(room._id)"
         >
           <ion-icon name="trash-outline"></ion-icon>
         </button>
       </div>
     </li>
-  </ul>
+    <li key="button">
+      <router-link
+        to="/rooms/add"
+        class="px-4 py-3 max-w-xs mx-auto my-2 flex flex-row clickable-flex-5"
+      >
+        <ion-icon
+          class="px-3"
+          name="add-circle-outline"
+          size="large"
+        ></ion-icon>
+        <div class="w-full flex flex-row justify-between item-center">
+          <span class="font-bold text-lg">New room</span>
+        </div>
+      </router-link>
+    </li>
+  </transition-group>
 </template>
 
 <script>

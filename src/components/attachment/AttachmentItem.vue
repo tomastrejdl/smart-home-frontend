@@ -1,7 +1,7 @@
 <template>
   <div
     id="attachment-item"
-    class="relative border rounded shadow-sm w-full h-full flex flex-col justify-center items-center select-none"
+    class="relative border rounded shadow-sm w-full h-full flex flex-col justify-center items-center select-none clickable-flex-5"
     :class="{
       'cursor-pointer':
         attachment.type == AttachmentType.LIGHT ||
@@ -9,7 +9,7 @@
     }"
   >
     <router-link
-      class="absolute top-0 right-0 m-2 "
+      class="absolute top-0 right-0 p-2"
       :to="{
         name: 'attachment-detail',
         params: { attachmentId: attachment._id }
@@ -36,13 +36,15 @@
       />
     </div>
 
-    <button
-      v-if="edit"
-      class="hover:bg-red-400 font-bold py-1 px-2 rounded-full focus:outline-none focus:shadow-outline"
-      @click="$emit('deleteAttachment', attachment)"
-    >
-      <ion-icon name="trash-outline"></ion-icon>
-    </button>
+    <transition name="fade-bounce">
+      <button
+        v-if="edit"
+        class="absolute top-0 left-0 -mt-3 -ml-3 hover:bg-red-400 font-bold py-0 px-1 rounded-full bg-gray-300 focus:outline-none focus:shadow-outline"
+        @click="$emit('deleteAttachment', attachment)"
+      >
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </transition>
   </div>
 </template>
 

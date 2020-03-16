@@ -10,6 +10,7 @@ import * as ModalDialogs from 'vue-modal-dialogs'
 
 import NavBar from '@/components/NavBar'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import Toggle from '@/components/Toggle'
 
 import { AttachmentType } from './other/attachment-types'
 
@@ -21,6 +22,7 @@ Vue.config.ignoredElements = ['ion-icon']
 
 Vue.component('NavBar', NavBar)
 Vue.component('pulse-loader', PulseLoader)
+Vue.component('Toggle', Toggle)
 
 // Global definitions available in all components
 Vue.mixin({

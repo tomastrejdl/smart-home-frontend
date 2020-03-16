@@ -1,6 +1,7 @@
 <template>
   <div>
     <div
+      class="transition duration-200"
       :class="{
         'text-yellow-500': attachment.characteristics.isOn.value,
         'text-black': !attachment.characteristics.isOn.value

@@ -5,10 +5,10 @@
       class="order-2 w-1/3 text-center font-bold flex justify-center items-center"
       v-if="links"
     >
-      <router-link class="px-1" to="/">Home</router-link> |
-      <router-link class="px-1" to="/rooms">Rooms</router-link> |
-      <router-link class="px-1" to="/devices">Devices</router-link> |
-      <router-link class="px-1" to="/about">About</router-link>
+      <router-link class="px-2" to="/">Home</router-link> |
+      <router-link class="px-2" to="/rooms">Rooms</router-link> |
+      <router-link class="px-2" to="/devices">Devices</router-link> |
+      <router-link class="px-2" to="/about">About</router-link>
     </div>
 
     <!-- BACK ARROW -->
@@ -16,7 +16,7 @@
       <router-link
         v-if="backLink"
         :to="backLink"
-        class="text-2xl inline-block mt-0 mr-10"
+        class="back-link text-2xl inline-block px-2"
       >
         <ion-icon name="arrow-back-outline"></ion-icon>
       </router-link>
@@ -28,7 +28,7 @@
         <li v-for="item in menuItems" :key="item.name">
           <button
             @click="item.action()"
-            class="px-4 border border-transparent rounded hover:border-gray-500 bg-transparent active:bg-gray-300"
+            class="px-4 py-1 "
             :class="item.classes"
           >
             <ion-icon :name="item.icon"></ion-icon>
@@ -63,5 +63,9 @@ export default {
 <style scoped>
 .router-link-exact-active {
   color: #42b983;
+}
+
+.back-link {
+  width: fit-content;
 }
 </style>

@@ -2,32 +2,38 @@
   <div>
     <NavBar :links="false" backLink="/devices" />
 
-    <h1 class="text-center text-2xl w-full">Looking for devices ...</h1>
+    <div class="flex flex-col items-center">
+      <h1 class="text-center text-2xl w-full">Looking for devices ...</h1>
 
-    <!-- REFRESH LIST -->
-    <button class="bg-blue-500 rounded" type="button" @click="searchDevices()">
-      Refresh
-    </button>
-
-    <!-- LIST OF FOUND DEVICES -->
-    <div v-for="device in foundDevices" :key="device.macAddress">
-      {{ device }}
-      <router-link
-        :to="{
-          name: 'add-device',
-          params: { deviceMacAddress: device.macAddress }
-        }"
-        class="bg-blue-300 rounded"
-        >Setup device</router-link
+      <!-- REFRESH LIST -->
+      <button
+        class="px-2 py-1 bg-blue-500 rounded grow-0"
+        type="button"
+        @click="searchDevices()"
       >
-    </div>
+        Refresh
+      </button>
 
-    <div v-if="foundDevices.length == 0 && !loading">
-      No devices found on your local network
-    </div>
+      <!-- LIST OF FOUND DEVICES -->
+      <div v-for="device in foundDevices" :key="device.macAddress">
+        {{ device }}
+        <router-link
+          :to="{
+            name: 'add-device',
+            params: { deviceMacAddress: device.macAddress }
+          }"
+          class="bg-blue-300 rounded"
+          >Setup device</router-link
+        >
+      </div>
 
-    <!-- ANIMATED LOADER -->
-    <pulse-loader :loading="loading" class="m-2"></pulse-loader>
+      <div v-if="foundDevices.length == 0 && !loading">
+        No devices found on your local network
+      </div>
+
+      <!-- ANIMATED LOADER -->
+      <pulse-loader :loading="loading" class="m-2"></pulse-loader>
+    </div>
   </div>
 </template>
 
