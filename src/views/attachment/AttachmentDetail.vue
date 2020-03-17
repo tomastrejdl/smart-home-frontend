@@ -112,7 +112,6 @@ export default {
       'invertCharacteristic'
     ]),
     toggleChange() {
-      console.log('toggle')
       this.toggleAttachment(this.attachment).then(() => {
         this.attachment = this.getAttachmentById(
           this.$route.params.attachmentId

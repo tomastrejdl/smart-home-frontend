@@ -12,7 +12,7 @@
     </div>
 
     <!-- BACK ARROW -->
-    <div class="navbar-menu order-1 text-left w-1/3">
+    <div class="navbar-menu order-1 text-left w-1/3 mx-">
       <router-link
         v-if="backLink"
         :to="backLink"
@@ -60,9 +60,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 .router-link-exact-active {
   color: #42b983;
+  @apply bg-gray-100 rounded;
 }
 
 .back-link {

@@ -1,7 +1,6 @@
 <template>
   <div
-    id="attachment-item"
-    class="relative border rounded shadow-sm w-full h-full flex flex-col justify-center items-center select-none clickable-flex-5"
+    class="relative rounded-lg shadow-sm w-full h-full flex flex-col justify-center items-center select-none clickable-flex-5 background-blur"
     :class="{
       'cursor-pointer':
         attachment.type == AttachmentType.LIGHT ||

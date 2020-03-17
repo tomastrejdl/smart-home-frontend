@@ -1,8 +1,25 @@
 <template>
-  <div id="app" v-if="dataLoaded">
+  <div
+    id="app"
+    v-if="dataLoaded"
+    class="h-screen w-screen antialiased text-gray-900"
+  >
+    <div class="background"></div>
     <transition :name="transitionName" mode="out-in">
       <router-view />
     </transition>
+  </div>
+  <div
+    v-else
+    class="h-screen w-screen flex flex-col justify-center items-center"
+  >
+    <pulse-loader :loading="!dataLoaded"></pulse-loader>
+    <div v-if="error">
+      Error. Could not connect to server
+      <button @click="loadData" class="bg-blue-500 px-2 py-1 rounded mx-auto">
+        Reload
+      </button>
+    </div>
   </div>
 </template>
 
@@ -12,21 +29,30 @@ import { mapActions } from 'vuex'
 export default {
   data: () => ({
     transitionName: 'slide-right',
-    dataLoaded: false
+    dataLoaded: false,
+    error: false
   }),
   async mounted() {
-    // LOAD DATA FROM API
-    await this.getRooms()
-    await this.getDevices()
-    await this.getAttachments()
-    this.dataLoaded = true
+    await this.loadData()
   },
   methods: {
     ...mapActions({
       getRooms: 'rooms/getRooms',
       getDevices: 'devices/getDevices',
       getAttachments: 'attachments/getAttachments'
-    })
+    }),
+    async loadData() {
+      // LOAD DATA FROM API
+      try {
+        await this.getRooms()
+        await this.getDevices()
+        await this.getAttachments()
+        this.dataLoaded = true
+      } catch (err) {
+        console.error(err)
+        this.error = true
+      }
+    }
   },
   watch: {
     $route(to, from) {
@@ -48,7 +74,16 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+}
+
+.background {
+  @apply fixed top-0 left-0 w-screen h-screen;
+  background-image: url('/img/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(1.2);
+  z-index: -999;
 }
 
 ion-icon {
@@ -95,10 +130,15 @@ button:active,
   @apply scale-95;
 }
 
+.background-blur {
+  backdrop-filter: blur(20px) brightness(1.3);
+}
+
 /** ANIMATIONS */
 
 /* Fade bounce */
-.fade-bounce-enter {
+.fade-bounce-enter,
+.fade-bounce-leave-to {
   opacity: 0;
   transform: scale(0);
 }
@@ -108,11 +148,6 @@ button:active,
 }
 .fade-bounce-leave-active {
   transition: all 0.15s ease-out;
-}
-
-.fade-bounce-leave-to {
-  opacity: 0;
-  transform: scale(0);
 }
 
 /* Slide */
@@ -143,12 +178,15 @@ button:active,
 }
 
 /* Fade */
-.fade-enter {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
+  backdrop-filter: blur(20px) brightness(1.3);
 }
 
 .fade-enter-active {
-  transition: all 1s;
+  transition: all 0.2s;
+  backdrop-filter: blur(20px) brightness(1.3);
 }
 
 .fade-leave-active {
@@ -157,6 +195,7 @@ button:active,
   opacity: 0;
   transform: translateY(0);
   position: absolute;
+  backdrop-filter: blur(20px) brightness(1.3);
 }
 
 .fade-move {

@@ -4,7 +4,7 @@
       class="transition duration-200"
       :class="{
         'text-yellow-500': attachment.characteristics.isOn.value,
-        'text-black': !attachment.characteristics.isOn.value
+        'text-initial': !attachment.characteristics.isOn.value
       }"
     >
       <ion-icon name="bulb-outline" class="text-6xl"></ion-icon>

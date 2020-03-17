@@ -3,7 +3,7 @@
     <li
       v-for="device in devices"
       :key="device._id"
-      class="border rounded px-4 py-3 shadow-sm max-w-md mx-auto my-2 flex flex-row"
+      class="px-4 py-3 max-w-md mx-auto my-2 flex flex-row rounded-lg background-blur"
     >
       <ion-icon
         class="px-3"
