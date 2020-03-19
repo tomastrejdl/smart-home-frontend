@@ -10,7 +10,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --host 0.0.0.0",
     "build": "vue-cli-service build",
-    "upload": "scp -r dist/* pi@smarthome.local:./smart-home-platform/frontend-dist",
+    "upload": "cd dist && scp -r $(find . -type f ! -name \"*.map\") pi@smarthome.local:./smart-home-platform/frontend-dist",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
