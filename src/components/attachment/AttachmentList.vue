@@ -3,8 +3,8 @@
     <div class="w-full text-right px-4 mb-4">
       <!-- TOGGLE EDIT MODE -->
       <button
-        class="px-4 py-1 rounded"
-        :class="{ 'bg-gray-200': edit }"
+        class="px-4 py-1 rounded bg-blur-brighter"
+        :class="{ 'bg-gray-100': edit }"
         @click="edit = !edit"
       >
         EDIT
@@ -34,7 +34,7 @@
           <!-- ADD NEW ATTACHMENT LINK -->
           <router-link
             to="attachments/add"
-            class="w-full h-full flex flex-col justify-center items-center cursor-pointer select-none clickable-flex-5"
+            class="w-full h-full text-white text-sm font-semibold flex flex-col justify-center items-center cursor-pointer select-none clickable-flex-5 rounded-lg bg-blur-darker"
           >
             <ion-icon name="add-circle-outline" class="text-5xl"></ion-icon>
             <span class="mt-4">New attachment</span>

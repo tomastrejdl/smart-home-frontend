@@ -6,10 +6,12 @@ module.exports = {
     disableHostCheck: true
   },
   pwa: {
-    name: 'Smart Home',
-    themeColor: '#4DBA87',
-    msTileColor: '#000000',
+    name: 'Smart Home by Tomáš Trejdl',
+    themeColor: '#4299e1',
     appleMobileWebAppCapable: 'yes',
-    appleMobileWebAppStatusBarStyle: 'white'
+    appleMobileWebAppStatusBarStyle: 'white',
+    manifestOptions: {
+      short_name: 'Smart Home'
+    }
   }
 }

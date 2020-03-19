@@ -4,7 +4,7 @@
     v-if="dataLoaded"
     class="h-screen w-screen antialiased text-gray-900"
   >
-    <div class="background"></div>
+    <div class="app-background"></div>
     <transition :name="transitionName" mode="out-in">
       <router-view />
     </transition>
@@ -13,7 +13,7 @@
     v-else
     class="h-screen w-screen flex flex-col justify-center items-center"
   >
-    <pulse-loader :loading="!dataLoaded"></pulse-loader>
+    <pulse-loader :loading="!dataLoaded" color="#4299e1"></pulse-loader>
     <div v-if="error">
       Error. Could not connect to server
       <button @click="loadData" class="bg-blue-500 px-2 py-1 rounded mx-auto">
@@ -49,7 +49,6 @@ export default {
         await this.getAttachments()
         this.dataLoaded = true
       } catch (err) {
-        console.error(err)
         this.error = true
       }
     }
@@ -76,13 +75,13 @@ export default {
   text-align: center;
 }
 
-.background {
+.app-background {
   @apply fixed top-0 left-0 w-screen h-screen;
   background-image: url('/img/background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  filter: brightness(1.2);
+  filter: brightness(1.1);
   z-index: -999;
 }
 
@@ -90,8 +89,10 @@ ion-icon {
   margin-bottom: -0.1em;
 }
 
+a:focus,
 button:focus {
   outline: none;
+  @apply shadow-outline;
 }
 
 a,
@@ -110,11 +111,17 @@ a:hover,
 button:hover,
 .clickable-flex:hover,
 .clickable:hover {
+  /* a:focus,
+button:focus,
+.clickable-flex:focus,
+.clickable:focus { */
   @apply scale-110;
 }
 
 .clickable-flex-5:hover,
 .clickable-5:hover {
+  /* .clickable-flex-5:focus,
+.clickable-5:focus { */
   @apply scale-105;
 }
 
@@ -130,8 +137,20 @@ button:active,
   @apply scale-95;
 }
 
-.background-blur {
+/* Background filters */
+.bg-blur {
+  backdrop-filter: blur(20px);
+  transition: backdrop-filter 0.2s;
+}
+
+.bg-blur-brighter {
   backdrop-filter: blur(20px) brightness(1.3);
+  transition: backdrop-filter 0.2s;
+}
+
+.bg-blur-darker {
+  backdrop-filter: blur(20px) brightness(0.9);
+  transition: backdrop-filter 0.2s;
 }
 
 /** ANIMATIONS */
@@ -200,5 +219,15 @@ button:active,
 
 .fade-move {
   transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+ion-icon {
+  --ionicon-stroke-width: 12px;
+}
+
+@media (min-width: 640px) {
+  ion-icon {
+    --ionicon-stroke-width: 16px;
+  }
 }
 </style>

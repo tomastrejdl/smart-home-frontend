@@ -5,10 +5,10 @@
       class="order-2 w-1/3 text-center font-bold flex justify-center items-center"
       v-if="links"
     >
-      <router-link class="px-2" to="/">Home</router-link> |
-      <router-link class="px-2" to="/rooms">Rooms</router-link> |
-      <router-link class="px-2" to="/devices">Devices</router-link> |
-      <router-link class="px-2" to="/about">About</router-link>
+      <router-link class="px-2 mx-1 rounded" to="/">Home</router-link>
+      <router-link class="px-2 mx-1 rounded" to="/rooms">Rooms</router-link>
+      <router-link class="px-2 mx-1 rounded" to="/devices">Devices</router-link>
+      <router-link class="px-2 mx-1 rounded" to="/about">About</router-link>
     </div>
 
     <!-- BACK ARROW -->
@@ -62,8 +62,8 @@ export default {
 
 <style scoped lang="postcss">
 .router-link-exact-active {
-  color: #42b983;
-  @apply bg-gray-100 rounded;
+  backdrop-filter: blur(20px) brightness(1.3);
+  @apply text-blue-500;
 }
 
 .back-link {

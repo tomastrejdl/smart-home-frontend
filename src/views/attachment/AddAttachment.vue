@@ -3,7 +3,7 @@
     <NavBar :links="false" backLink="/" />
     <h1 class="text-center text-2xl w-full">Add attachment</h1>
     <form
-      class="w-full max-w-lg mx-auto px-4"
+      class="w-full max-w-lg mx-auto p-8 rounded-lg bg-blur-brighter"
       @submit="
         $event.preventDefault()
         addAttachment()

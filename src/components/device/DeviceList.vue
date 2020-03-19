@@ -3,7 +3,7 @@
     <li
       v-for="device in devices"
       :key="device._id"
-      class="px-4 py-3 max-w-md mx-auto my-2 flex flex-row rounded-lg background-blur"
+      class="px-4 py-3 max-w-md mx-auto my-2 flex flex-row rounded-lg bg-blur-brighter"
     >
       <ion-icon
         class="px-3"
@@ -30,16 +30,10 @@
     <li key="button">
       <router-link
         to="/devices/search"
-        class="px-4 py-3 max-w-xs mx-auto my-2 flex flex-row clickable-flex-5"
+        class="max-w-md px-4 py-3 mx-auto my-2 text-white flex flex-row clickable-flex-5 rounded-lg bg-blur-darker"
       >
-        <ion-icon
-          class="px-3"
-          name="add-circle-outline"
-          size="large"
-        ></ion-icon>
-        <div class="w-full flex flex-row justify-between item-center">
-          <span class="font-bold text-lg">Add device</span>
-        </div>
+        <ion-icon class="px-3 text-2xl" name="add-circle-outline"></ion-icon>
+        <span class="font-semibold">Add device</span>
       </router-link>
     </li>
   </transition-group>

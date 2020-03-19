@@ -32,7 +32,11 @@
       </div>
 
       <!-- ANIMATED LOADER -->
-      <pulse-loader :loading="loading" class="m-2"></pulse-loader>
+      <pulse-loader
+        :loading="loading"
+        color="#4299e1"
+        class="m-2"
+      ></pulse-loader>
     </div>
   </div>
 </template>

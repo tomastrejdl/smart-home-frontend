@@ -1,7 +1,10 @@
 <template>
   <div>
     <NavBar :links="false" backLink="/" :menuItems="menuItems" />
-    <div v-if="attachment">
+    <div
+      v-if="attachment"
+      class="p-8 bg-blur-brighter max-w-lg mx-auto rounded-lg"
+    >
       <h1 class="text-center text-2xl w-full">{{ attachment.name }}</h1>
 
       <div>
