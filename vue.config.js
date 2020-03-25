@@ -1,3 +1,5 @@
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+
 module.exports = {
   devServer: {
     host: '0.0.0.0',
@@ -13,5 +15,8 @@ module.exports = {
     manifestOptions: {
       short_name: 'Smart Home'
     }
+  },
+  configureWebpack: {
+    plugins: [new FaviconsWebpackPlugin('./public/img/smarthome-logo.png')]
   }
 }
