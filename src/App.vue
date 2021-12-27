@@ -2,12 +2,24 @@
   <div
     id="app"
     v-if="dataLoaded"
-    class="h-screen w-screen antialiased text-gray-900"
+    class="h-screen w-screen flex flex-col justify-start antialiased text-gray-900"
   >
+    <div
+      v-if="!production"
+      class="flex justify-between items-center h-10 pl-8 pr-4 z-50"
+    >
+      <span class="font-bold">9:41</span>
+      <span class="text-xl">
+        <ion-icon name="cellular"></ion-icon>
+        <ion-icon name="wifi" class="mx-1"></ion-icon>
+        <ion-icon name="battery-full"></ion-icon>
+      </span>
+    </div>
     <div class="app-background"></div>
     <transition :name="transitionName" mode="out-in">
       <router-view />
     </transition>
+    <!-- <dialogs-wrapper name="default" transition-name="fade"></dialogs-wrapper> -->
   </div>
   <div
     v-else
@@ -30,7 +42,8 @@ export default {
   data: () => ({
     transitionName: 'slide-right',
     dataLoaded: false,
-    error: false
+    error: false,
+    production: process.env.NODE_ENV === 'production'
   }),
   async mounted() {
     await this.loadData()
@@ -89,6 +102,11 @@ ion-icon {
   margin-bottom: -0.1em;
 }
 
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 a:focus,
 button:focus {
   outline: none;
@@ -115,14 +133,14 @@ button:hover,
 button:focus,
 .clickable-flex:focus,
 .clickable:focus { */
-  @apply scale-110;
+  /* @apply scale-110; */
 }
 
 .clickable-flex-5:hover,
 .clickable-5:hover {
   /* .clickable-flex-5:focus,
 .clickable-5:focus { */
-  @apply scale-105;
+  /* @apply scale-105; */
 }
 
 a:active,
@@ -135,6 +153,10 @@ button:active,
 .clickable-flex-5:active,
 .clickable-5:active {
   @apply scale-95;
+}
+
+.not-clickable {
+  @apply scale-100 !important;
 }
 
 /* Background filters */

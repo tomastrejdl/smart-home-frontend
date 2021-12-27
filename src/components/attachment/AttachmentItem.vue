@@ -1,11 +1,20 @@
 <template>
   <button
     @click="attachmentClicked(attachment)"
-    class="relative rounded-lg w-full h-full flex flex-col justify-center items-center select-none clickable-flex-5 bg-blur-brighter"
+    class="relative rounded-lg w-full h-full flex flex-col justify-center items-center select-none bg-blur-brighter focus:shadow-none"
     :class="{
       'cursor-pointer':
         attachment.type == AttachmentType.LIGHT ||
-        attachment.type == AttachmentType.SOCKET
+        attachment.type == AttachmentType.SOCKET,
+      'not-clickable cursor-default':
+        attachment.type == AttachmentType.TEMPERATURE_SENSOR ||
+        attachment.type == AttachmentType.DOOR_SENSOR,
+      'bg-yellow-400':
+        attachment.characteristics.isOn &&
+        attachment.characteristics.isOn.value,
+      'bg-initial':
+        attachment.characteristics.isOn &&
+        !attachment.characteristics.isOn.value
     }"
   >
     <router-link

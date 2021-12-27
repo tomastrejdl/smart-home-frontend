@@ -1,48 +1,47 @@
 <template>
   <div>
     <NavBar :links="false" backLink="/" :menuItems="menuItems" />
-    <div
-      v-if="attachment"
-      class="p-8 bg-blur-brighter max-w-lg mx-auto rounded-lg"
-    >
-      <h1 class="text-center text-2xl w-full">{{ attachment.name }}</h1>
+    <div v-if="attachment" class="px-8">
+      <div class="p-8 bg-blur-brighter max-w-lg mx-auto rounded-lg">
+        <h1 class="text-center text-2xl w-full">{{ attachment.name }}</h1>
 
-      <div>
-        <Light
-          v-if="attachment.type == AttachmentType.LIGHT"
-          :attachment="attachment"
-          :detail="true"
-        />
+        <div>
+          <Light
+            v-if="attachment.type == AttachmentType.LIGHT"
+            :attachment="attachment"
+            :detail="true"
+          />
 
-        <Socket
-          v-if="attachment.type == AttachmentType.SOCKET"
-          :attachment="attachment"
-          :detail="true"
-        />
+          <Socket
+            v-if="attachment.type == AttachmentType.SOCKET"
+            :attachment="attachment"
+            :detail="true"
+          />
 
-        <TemperatureSensor
-          v-if="attachment.type == AttachmentType.TEMPERATURE_SENSOR"
-          :attachment="attachment"
-          :detail="true"
-        />
+          <TemperatureSensor
+            v-if="attachment.type == AttachmentType.TEMPERATURE_SENSOR"
+            :attachment="attachment"
+            :detail="true"
+          />
 
-        <DoorSensor
-          v-if="attachment.type == AttachmentType.DOOR_SENSOR"
-          :attachment="attachment"
-          :detail="true"
-        />
+          <DoorSensor
+            v-if="attachment.type == AttachmentType.DOOR_SENSOR"
+            :attachment="attachment"
+            :detail="true"
+          />
+        </div>
+
+        <Toggle
+          v-if="
+            this.attachment.type == AttachmentType.LIGHT ||
+              this.attachment.type == AttachmentType.SOCKET
+          "
+          onText="on"
+          offText="off"
+          @input="toggleChange"
+          :value="this.attachment.characteristics.isOn.value"
+        ></Toggle>
       </div>
-
-      <Toggle
-        v-if="
-          this.attachment.type == AttachmentType.LIGHT ||
-            this.attachment.type == AttachmentType.SOCKET
-        "
-        onText="on"
-        offText="off"
-        @input="toggleChange"
-        :value="this.attachment.characteristics.isOn.value"
-      ></Toggle>
     </div>
     <div v-else>
       <h1 class="text-center text-2xl w-full">

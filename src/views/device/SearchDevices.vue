@@ -1,43 +1,44 @@
 <template>
-  <div>
-    <NavBar :links="false" backLink="/devices" />
+  <div class="px-4 sm:px-8">
+    <NavBar :links="false" backLink="/devices" :menuItems="menuItems">
+      <span>Add Device</span>
+    </NavBar>
 
-    <div class="flex flex-col items-center">
-      <h1 class="text-center text-2xl w-full">Looking for devices ...</h1>
-
-      <!-- REFRESH LIST -->
-      <button
-        class="px-2 py-1 bg-blue-500 rounded grow-0"
-        type="button"
-        @click="searchDevices()"
+    <!-- LIST OF FOUND DEVICES -->
+    <ul>
+      <li
+        v-for="device in foundDevices"
+        :key="device.macAddress"
+        class="px-4 py-6 max-w-md mx-auto my-4 flex flex-col rounded-lg bg-blur-brighter"
       >
-        Refresh
-      </button>
+        <div class="w-full flex justify-between items-center px-4 py-4">
+          <div class="flex justify-start items-center">
+            <ion-icon name="hardware-chip-outline" size="large"></ion-icon>
+            <span class="font-bold text-lg pl-2"> {{ device.deviceType }}</span>
+          </div>
+          <span class="text-gray-600">{{ device.macAddress }}</span>
+        </div>
 
-      <!-- LIST OF FOUND DEVICES -->
-      <div v-for="device in foundDevices" :key="device.macAddress">
-        {{ device }}
-        <router-link
-          :to="{
-            name: 'add-device',
-            params: { deviceMacAddress: device.macAddress }
-          }"
-          class="bg-blue-300 rounded"
-          >Setup device</router-link
-        >
-      </div>
+        <div class="w-full flex justify-center items-center px-4">
+          <router-link
+            :to="{
+              name: 'add-device',
+              params: { deviceMacAddress: device.macAddress }
+            }"
+            class="w-full bg-blue-500 text-white font-bold px-4 py-2 rounded clickable-5"
+          >
+            Setup this device
+          </router-link>
+        </div>
+      </li>
+    </ul>
 
-      <div v-if="foundDevices.length == 0 && !loading">
-        No devices found on your local network
-      </div>
-
-      <!-- ANIMATED LOADER -->
-      <pulse-loader
-        :loading="loading"
-        color="#4299e1"
-        class="m-2"
-      ></pulse-loader>
+    <div v-if="foundDevices.length == 0 && !loading">
+      No devices found on your local network
     </div>
+
+    <!-- ANIMATED LOADER -->
+    <pulse-loader :loading="loading" color="#4299e1" class="m-2"></pulse-loader>
   </div>
 </template>
 
@@ -48,10 +49,18 @@ import { mapGetters } from 'vuex'
  * This component shows a list of Devices that have not yet been configured to work with the system
  */
 export default {
-  data: () => ({
-    foundDevices: [],
-    loading: false
-  }),
+  data() {
+    return {
+      foundDevices: [],
+      loading: false,
+      menuItems: [
+        {
+          icon: 'refresh',
+          action: this.searchDevices
+        }
+      ]
+    }
+  },
   computed: {
     ...mapGetters('app', ['getApiUrl'])
   },

@@ -1,14 +1,18 @@
 <template>
-  <nav class="flex flex-wrap items-center justify-between p-4">
+  <nav class="flex flex-wrap items-center justify-between px-4 py-2 sm:py-4">
     <!-- GLOBAL NAVIGATION -->
-    <div
-      class="order-2 w-1/3 text-center font-bold flex justify-center items-center"
-      v-if="links"
-    >
-      <router-link class="px-2 mx-1 rounded" to="/">Home</router-link>
-      <router-link class="px-2 mx-1 rounded" to="/rooms">Rooms</router-link>
-      <router-link class="px-2 mx-1 rounded" to="/devices">Devices</router-link>
-      <router-link class="px-2 mx-1 rounded" to="/about">About</router-link>
+    <div class="order-2 w-1/3 text-center font-bold">
+      <div v-if="links" class="flex justify-center items-center">
+        <router-link class="px-2 mx-1 rounded" to="/">Home</router-link>
+        <router-link class="px-2 mx-1 rounded" to="/rooms">Rooms</router-link>
+        <router-link class="px-2 mx-1 rounded" to="/devices"
+          >Devices</router-link
+        >
+        <router-link class="px-2 mx-1 rounded" to="/about">About</router-link>
+      </div>
+      <div v-else class="flex justify-center items-center">
+        <slot></slot>
+      </div>
     </div>
 
     <!-- BACK ARROW -->
@@ -16,7 +20,7 @@
       <router-link
         v-if="backLink"
         :to="backLink"
-        class="back-link text-2xl inline-block px-2"
+        class="back-link text-2xl inline-block"
       >
         <ion-icon name="arrow-back-outline"></ion-icon>
       </router-link>
@@ -28,11 +32,15 @@
         <li v-for="item in menuItems" :key="item.name">
           <button
             @click="item.action()"
-            class="px-4 py-1 "
+            class="w-8 h-8 bg-blue-500 text-white rounded-full"
             :class="item.classes"
           >
-            <ion-icon :name="item.icon"></ion-icon>
-            {{ item.name }}
+            <ion-icon
+              :name="item.icon"
+              class="text-xl"
+              style="--ionicon-stroke-width: 40px;"
+            ></ion-icon>
+            <span v-if="item.name">{{ item.name }}</span>
           </button>
         </li>
       </ul>

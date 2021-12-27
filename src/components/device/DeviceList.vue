@@ -3,16 +3,17 @@
     <li
       v-for="device in devices"
       :key="device._id"
-      class="px-4 py-3 max-w-md mx-auto my-2 flex flex-row rounded-lg bg-blur-brighter"
+      class="px-4 py-3 max-w-md mx-auto my-2 flex flex-col rounded-lg bg-blur-brighter"
     >
-      <ion-icon
-        class="px-3"
-        name="hardware-chip-outline"
-        size="large"
-      ></ion-icon>
-      <div class="w-full flex flex-row justify-between items-center">
-        <span class="font-bold text-lg"> {{ device.name }}</span>
-        <span class="text-gray-600"> {{ device.macAddress }}</span>
+      <div class="w-full flex justify-between items-center">
+        <div class="flex justify-start items-center">
+          <ion-icon
+            class="px-3"
+            name="hardware-chip-outline"
+            size="large"
+          ></ion-icon>
+          <span class="font-bold text-lg"> {{ device.name }}</span>
+        </div>
         <span
           class="font-bold text-red-500"
           :class="{ 'text-green-500': device.isOnline }"
@@ -25,6 +26,11 @@
         >
           <ion-icon name="trash-outline"></ion-icon>
         </button>
+      </div>
+      <div
+        class="w-full flex justify-start items-center mt-2 px-4 pt-2 border-t border-gray-600"
+      >
+        <span class="text-gray-600">Mac address: {{ device.macAddress }}</span>
       </div>
     </li>
     <li key="button">

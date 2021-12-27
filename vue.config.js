@@ -1,5 +1,13 @@
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
+const path = require('path')
+const fs = require('fs')
+
+const packageJson = fs.readFileSync('./package.json')
+const version = JSON.parse(packageJson).version || 0
+process.env.VUE_APP_VERSION = version
+process.env.VUE_APP_BUILD_DATE = Math.floor(Date.now() / 1000)
+
 module.exports = {
   devServer: {
     host: '0.0.0.0',

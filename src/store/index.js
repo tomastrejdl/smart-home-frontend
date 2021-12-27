@@ -9,6 +9,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
+  state: {
+    appVersion: process.env.VUE_APP_VERSION || '0',
+    buildDate: process.env.VUE_APP_BUILD_DATE || ''
+  },
+  getters: {
+    appVersion: state => state.appVersion,
+    buildDate: state => state.buildDate
+  },
   modules: {
     app,
     rooms,

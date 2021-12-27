@@ -1,13 +1,33 @@
 <template>
-  <div class="px-3">
+  <div class="w-full px-3">
     <span
       class="block uppercase tracking-wide text-left text-gray-700 text-xs font-bold mb-2"
     >
-      Select Pin
+      <div class="w-fill flex justify-between items-center">
+        <span>Select Pin</span>
+        <ion-icon
+          v-if="showPinInfoText"
+          name="information-circle"
+          class="text-lg"
+          @click="showPinInfoText = false"
+        ></ion-icon>
+        <ion-icon
+          v-else
+          name="information-circle-outline"
+          class="text-lg"
+          @click="showPinInfoText = true"
+        ></ion-icon>
+      </div>
     </span>
+    <transition-expand>
+      <p v-if="showPinInfoText" class="text-gray-700 text-xs italic">
+        Temperature sensors use pin 3, door sensors use pin 4, other types of
+        attachments can use any available pin.
+      </p>
+    </transition-expand>
     <div class="flex justify-between items-center">
       <div
-        class="container relative select-none w-auto p-8 bg-gray-200 rounded-md"
+        class="container relative select-none w-auto p-4 sm:p-8 bg-gray-200 rounded-md"
         v-for="pin in availablePins"
         :key="pin"
       >
@@ -31,10 +51,6 @@
         ></div>
       </div>
     </div>
-    <p class="text-gray-700 text-xs font-semibold italic">
-      Temperature sensors use pin 3, door sensors use pin 4, other types of
-      attachments can use any available pin.
-    </p>
     <p v-if="availablePins.length == 0" class="text-red-500 text-xs italic">
       No available Pins on this device
     </p>
@@ -47,7 +63,10 @@
  * Works just like radio buttons, just styled to be clickable buttons
  */
 export default {
-  props: { value: String, availablePins: Array, attachmentType: String }
+  props: { value: String, availablePins: Array, attachmentType: String },
+  data: () => ({
+    showPinInfoText: false
+  })
 }
 </script>
 

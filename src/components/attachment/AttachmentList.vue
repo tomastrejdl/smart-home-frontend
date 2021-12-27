@@ -11,7 +11,7 @@
       </button>
     </div>
 
-    <div class="px-8 sm:px-32 lg:px-64">
+    <div class="px-4 sm:px-32 lg:px-64">
       <transition-group tag="ul" name="fade" class="list grid gap-4">
         <li
           v-for="attachment in attachments"
