@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="devices">
     <NavBar />
     <DeviceList />
   </div>

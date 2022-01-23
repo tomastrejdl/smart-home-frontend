@@ -1,30 +1,30 @@
 <template>
-  <transition-group tag="ul" name="fade" class="px-4">
+  <transition-group tag="ul" name="fade" class="px-4" id="room-list">
     <li
       v-for="room in rooms"
       :key="room._id"
-      class="px-4 py-3 max-w-md mx-auto my-2 flex flex-col items-center rounded-lg bg-blur-brighter"
+      class="room-list-item bg-blur-brighter flex flex-col items-center max-w-md px-4 py-3 mx-auto my-2 rounded-lg"
     >
-      <div class="w-full flex justify-between items-center">
-        <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between w-full">
+        <div class="flex items-center justify-between">
           <ion-icon class="px-3" name="bed-outline" size="large"></ion-icon>
-          <span class="font-bold text-lg">{{ room.name }}</span>
+          <span class="text-lg font-bold">{{ room.name }}</span>
         </div>
         <!-- DELETE ROOM -->
         <button
-          class="hover:bg-red-400 font-bold py-1 px-2 rounded-full focus:outline-none"
+          class="delete-room hover:bg-red-400 focus:outline-none px-2 py-1 font-bold rounded-full"
           @click="deleteRoom(room._id)"
         >
           <ion-icon name="trash-outline"></ion-icon>
         </button>
       </div>
       <div
-        class="w-full flex justify-start items-center mt-2 px-4 pt-2 border-t border-gray-600"
+        class="flex items-center justify-start w-full px-4 pt-2 mt-2 border-t border-gray-600"
       >
         <span>Actions:</span>
         <!-- TURN ALL LIGHTS IN THE ROOM ON -->
         <button
-          class="font-bold py-1 px-2 rounded-full focus:outline-none"
+          class="turn-all-lights-on focus:outline-none px-2 py-1 font-bold rounded-full"
           @click="toggleAllLights(room._id, true)"
         >
           <span class="font-bold">all</span>
@@ -34,7 +34,7 @@
 
         <!-- TURN ALL LIGHTS IN THE ROOM OFF -->
         <button
-          class="font-bold py-1 px-2 rounded-full focus:outline-none"
+          class="turn-all-lights-off focus:outline-none px-2 py-1 font-bold rounded-full"
           @click="toggleAllLights(room._id, false)"
         >
           <span class="font-bold">all</span>
@@ -45,8 +45,9 @@
     </li>
     <li key="button">
       <router-link
+        id="add-new-room"
         to="/rooms/add"
-        class="max-w-md px-4 py-3 mx-auto my-2 text-white flex flex-row clickable-flex-5 rounded-lg bg-blur-darker"
+        class="clickable-flex-5 bg-blur-darker flex flex-row max-w-md px-4 py-3 mx-auto my-2 text-white rounded-lg"
       >
         <ion-icon class="px-3 text-2xl" name="add-circle-outline"></ion-icon>
         <div class="font-semibold">New room</div>

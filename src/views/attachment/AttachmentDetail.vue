@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div id="attachment-detail">
     <NavBar :links="false" backLink="/" :menuItems="menuItems" />
     <div v-if="attachment" class="px-8">
-      <div class="p-8 bg-blur-brighter max-w-lg mx-auto rounded-lg">
-        <h1 class="text-center text-2xl w-full">{{ attachment.name }}</h1>
+      <div class="bg-blur-brighter max-w-lg p-8 mx-auto rounded-lg">
+        <h1 class="w-full text-2xl text-center">{{ attachment.name }}</h1>
 
         <div>
           <Light
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div v-else>
-      <h1 class="text-center text-2xl w-full">
+      <h1 class="w-full text-2xl text-center">
         Attachment {{ $route.params.attachmentId }} not found
       </h1>
     </div>

@@ -1,31 +1,31 @@
 <template>
-  <div class="px-4 sm:px-8">
+  <div id="search-devices" class="sm:px-8 px-4">
     <NavBar :links="false" backLink="/devices" :menuItems="menuItems">
       <span>Add Device</span>
     </NavBar>
 
     <!-- LIST OF FOUND DEVICES -->
-    <ul>
+    <ul id="devices-list">
       <li
         v-for="device in foundDevices"
         :key="device.macAddress"
-        class="px-4 py-6 max-w-md mx-auto my-4 flex flex-col rounded-lg bg-blur-brighter"
+        class="devices-list-item bg-blur-brighter flex flex-col max-w-md px-4 py-6 mx-auto my-4 rounded-lg"
       >
-        <div class="w-full flex justify-between items-center px-4 py-4">
-          <div class="flex justify-start items-center">
+        <div class="flex items-center justify-between w-full px-4 py-4">
+          <div class="flex items-center justify-start">
             <ion-icon name="hardware-chip-outline" size="large"></ion-icon>
-            <span class="font-bold text-lg pl-2"> {{ device.deviceType }}</span>
+            <span class="pl-2 text-lg font-bold"> {{ device.deviceType }}</span>
           </div>
           <span class="text-gray-600">{{ device.macAddress }}</span>
         </div>
 
-        <div class="w-full flex justify-center items-center px-4">
+        <div class="flex items-center justify-center w-full px-4">
           <router-link
             :to="{
               name: 'add-device',
               params: { deviceMacAddress: device.macAddress }
             }"
-            class="w-full bg-blue-500 text-white font-bold px-4 py-2 rounded clickable-5"
+            class="add-device clickable-5 w-full px-4 py-2 font-bold text-white bg-blue-500 rounded"
           >
             Setup this device
           </router-link>

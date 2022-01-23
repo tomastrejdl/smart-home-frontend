@@ -1,8 +1,11 @@
 <template>
-  <nav class="flex flex-wrap items-center justify-between px-4 py-2 sm:py-4">
+  <nav
+    id="navbar"
+    class="sm:py-4 flex flex-wrap items-center justify-between px-4 py-2"
+  >
     <!-- GLOBAL NAVIGATION -->
-    <div class="order-2 w-1/3 text-center font-bold">
-      <div v-if="links" class="flex justify-center items-center">
+    <div id="global-navigation" class="order-2 w-1/3 font-bold text-center">
+      <div v-if="links" class="flex items-center justify-center">
         <router-link class="px-2 mx-1 rounded" to="/">Home</router-link>
         <router-link class="px-2 mx-1 rounded" to="/rooms">Rooms</router-link>
         <router-link class="px-2 mx-1 rounded" to="/devices"
@@ -10,29 +13,30 @@
         >
         <router-link class="px-2 mx-1 rounded" to="/about">About</router-link>
       </div>
-      <div v-else class="flex justify-center items-center">
+      <div v-else class="flex items-center justify-center">
         <slot></slot>
       </div>
     </div>
 
     <!-- BACK ARROW -->
-    <div class="navbar-menu order-1 text-left w-1/3 mx-">
+    <div class="navbar-menu mx- order-1 w-1/3 text-left">
       <router-link
         v-if="backLink"
         :to="backLink"
-        class="back-link text-2xl inline-block"
+        class="back-link inline-block text-2xl"
       >
         <ion-icon name="arrow-back-outline"></ion-icon>
       </router-link>
     </div>
 
     <!-- OTHER NAVIGATION -->
-    <div class="navbar-menu order-3 text-right w-1/3">
+    <div class="navbar-menu order-3 w-1/3 text-right">
       <ul class="flex flex-row justify-end">
         <li v-for="item in menuItems" :key="item.name">
           <button
+            :id="item.icon"
             @click="item.action()"
-            class="w-8 h-8 bg-blue-500 text-white rounded-full"
+            class="w-8 h-8 text-white bg-blue-500 rounded-full"
             :class="item.classes"
           >
             <ion-icon

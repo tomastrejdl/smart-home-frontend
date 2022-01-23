@@ -1,22 +1,22 @@
 <template>
-  <div>
+  <div id="add-attachment">
     <NavBar :links="false" backLink="/" />
-    <h1 class="text-center text-2xl w-full">Add attachment</h1>
-    <form class="w-full max-w-lg mx-auto px-8" @submit.prevent="addAttachment">
+    <h1 class="w-full text-2xl text-center">Add attachment</h1>
+    <form class="w-full max-w-lg px-8 mx-auto" @submit.prevent="addAttachment">
       <div
-        class="flex flex-col items-center -mx-3 mb-6 p-8 rounded-lg bg-blur-brighter"
+        class="bg-blur-brighter flex flex-col items-center p-8 mb-6 -mx-3 rounded-lg"
       >
         <!-- ATTACHMENT NAME INPUT -->
-        <div class="w-full px-3 mb-6 md:mb-0">
+        <div class="md:mb-0 w-full px-3 mb-6">
           <label
-            class="block uppercase tracking-wide text-left text-gray-700 text-xs font-bold mb-2"
-            for="grid-first-name"
+            class="block mb-2 text-xs font-bold tracking-wide text-left text-gray-700 uppercase"
+            for="attachment-name"
           >
             Name
           </label>
           <input
-            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white placeholder-gray-700"
-            id="first-name"
+            class="focus:outline-none focus:bg-white block w-full px-4 py-3 mb-3 leading-tight text-gray-700 placeholder-gray-700 bg-gray-200 border border-gray-700 rounded appearance-none"
+            id="attachment-name"
             type="text"
             placeholder="e.g. Ceiling Light"
             v-model="name"
@@ -27,16 +27,16 @@
         </div>
 
         <!-- DEVICE SELECT -->
-        <div class="w-full px-3 mb-6 md:mb-0">
+        <div class="md:mb-0 w-full px-3 mb-6">
           <label
-            class="block uppercase tracking-wide text-left text-gray-700 text-xs font-bold mb-2"
+            class="block mb-2 text-xs font-bold tracking-wide text-left text-gray-700 uppercase"
             for="device"
           >
             Device
           </label>
           <div class="relative">
             <select
-              class="block appearance-none w-full bg-gray-200 border border-gray-700 text-gray-700 py-3 px-4 mb-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              class="focus:outline-none focus:bg-white focus:border-gray-500 block w-full px-4 py-3 pr-8 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-700 rounded appearance-none"
               id="device"
               v-model="deviceId"
             >
@@ -49,10 +49,10 @@
               </option>
             </select>
             <div
-              class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+              class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none"
             >
               <svg
-                class="fill-current h-4 w-4"
+                class="w-4 h-4 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
               >
@@ -65,16 +65,16 @@
         </div>
 
         <!-- ATTACHMENT TYPE SELECT -->
-        <div class="w-full px-3 mb-6 md:mb-0">
+        <div class="md:mb-0 w-full px-3 mb-6">
           <label
-            class="block uppercase tracking-wide text-left text-gray-700 text-xs font-bold mb-2"
+            class="block mb-2 text-xs font-bold tracking-wide text-left text-gray-700 uppercase"
             for="type"
           >
             Type
           </label>
           <div class="relative">
             <select
-              class="block appearance-none w-full bg-gray-200 border border-gray-700 text-gray-700 py-3 px-4 mb-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              class="focus:outline-none focus:bg-white focus:border-gray-500 block w-full px-4 py-3 pr-8 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-700 rounded appearance-none"
               id="type"
               v-model="type"
             >
@@ -86,10 +86,10 @@
               <option :value="AttachmentType.DOOR_SENSOR">Door sensor</option>
             </select>
             <div
-              class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+              class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none"
             >
               <svg
-                class="fill-current h-4 w-4"
+                class="w-4 h-4 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
               >
@@ -111,7 +111,8 @@
         <!-- ADD ATTACHMENT BUTTON -->
         <div class="flex items-center justify-between">
           <button
-            class="bg-blue-500 text-white font-bold py-2 px-4 m-2 rounded clickable-5"
+            id="add-attachment"
+            class="clickable-5 px-4 py-2 m-2 font-bold text-white bg-blue-500 rounded"
             type="submit"
           >
             Add attachment

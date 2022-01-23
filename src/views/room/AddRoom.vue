@@ -1,22 +1,22 @@
 <template>
-  <div>
+  <div id="add-room">
     <NavBar :links="false" backLink="/rooms" />
-    <h1 class="text-center text-2xl w-full">Add room</h1>
-    <form class="w-full max-w-lg mx-auto px-8" @submit.prevent="addRoom">
+    <h1 class="w-full text-2xl text-center">Add room</h1>
+    <form class="w-full max-w-lg px-8 mx-auto" @submit.prevent="addRoom">
       <div
-        class="flex flex-col justify-center items-center p-8 rounded-lg bg-blur-brighter"
+        class="bg-blur-brighter flex flex-col items-center justify-center p-8 rounded-lg"
       >
         <!-- ROOM NAME INPUT -->
-        <div class="w-full px-3 mb-6 md:mb-0">
+        <div class="md:mb-0 w-full px-3 mb-6">
           <label
-            class="block uppercase tracking-wide text-left text-gray-700 text-xs font-bold mb-2"
-            for="grid-first-name"
+            class="block mb-2 text-xs font-bold tracking-wide text-left text-gray-700 uppercase"
+            for="room-name"
           >
             Name
           </label>
           <input
-            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white placeholder-gray-700"
-            id="first-name"
+            class="focus:outline-none focus:bg-white block w-full px-4 py-3 mb-3 leading-tight text-gray-700 placeholder-gray-700 bg-gray-200 border border-gray-700 rounded appearance-none"
+            id="room-name"
             type="text"
             placeholder="e.g. Bedroom"
             v-model="name"
@@ -29,7 +29,8 @@
         <!-- ADD ROOM BUTTON -->
         <div class="flex items-center justify-between">
           <button
-            class="bg-blue-500 text-white font-bold py-2 px-4 m-2 rounded clickable-5"
+            id="add-room"
+            class="clickable-5 px-4 py-2 m-2 font-bold text-white bg-blue-500 rounded"
             type="submit"
           >
             Add room
