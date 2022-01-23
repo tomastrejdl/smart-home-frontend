@@ -10,7 +10,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --host 0.0.0.0",
     "build": "vue-cli-service build",
-    "buildandcopy":"vue-cli-service build && cp -r ./dist/* ../smart-home-platform/frontend-dist/",
+    "buildandcopy": "vue-cli-service build && mkdir ../smart-home-platform/frontend-dist/ && cp -r ./dist/* ../smart-home-platform/frontend-dist/",
     "preupload": "npm run build",
     "upload": "scp -r dist/* pi@smarthome.local:./smart-home-platform/frontend-dist",
     "test:unit": "vue-cli-service test:unit",
@@ -71,7 +71,7 @@
     "url": "https://github.com/tomastrejdl/smart-home-frontend/issues"
   },
   "engines": {
-    "node": "12.11.1"
+    "node": "^14.16.1"
   },
   "homepage": "https://github.com/tomastrejdl/smart-home-frontend",
   "keywords": [
