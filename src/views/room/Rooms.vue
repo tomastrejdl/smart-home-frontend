@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="rooms">
     <NavBar />
     <RoomList />
   </div>

@@ -1,7 +1,7 @@
 <template>
   <button
     @click="attachmentClicked(attachment)"
-    class="relative rounded-lg w-full h-full flex flex-col justify-center items-center select-none bg-blur-brighter focus:shadow-none"
+    class="attachment-item bg-blur-brighter focus:shadow-none relative flex flex-col items-center justify-center w-full h-full rounded-lg select-none"
     :class="{
       'cursor-pointer':
         attachment.type == AttachmentType.LIGHT ||
@@ -18,7 +18,7 @@
     }"
   >
     <router-link
-      class="absolute top-0 right-0 h-8 w-8 p-1 flex justify-center items-center rounded-full"
+      class="attachment-detail-link absolute top-0 right-0 flex items-center justify-center w-8 h-8 p-1 rounded-full"
       :to="{
         name: 'attachment-detail',
         params: { attachmentId: attachment._id }
@@ -48,7 +48,7 @@
     <transition name="fade-bounce">
       <button
         v-if="edit"
-        class="absolute top-0 left-0 -mt-3 -ml-3 hover:bg-red-400 font-bold py-0 px-1 rounded-full bg-gray-300"
+        class="hover:bg-red-400 absolute top-0 left-0 px-1 py-0 -mt-3 -ml-3 font-bold bg-gray-300 rounded-full"
         @click="$emit('deleteAttachment', attachment)"
       >
         <ion-icon name="close"></ion-icon>

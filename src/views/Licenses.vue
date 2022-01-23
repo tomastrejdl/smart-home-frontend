@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div id="licenses">
     <NavBar :links="false" backLink="/about">Licenses</NavBar>
     <BaseList>
       <li v-for="(item, key) in licenses" :key="key">
         <BaseListItem :text="key">
           <template v-slot:left>
-            <BaseBadge class="bg-blue-500 text-white">
+            <BaseBadge class="text-white bg-blue-500">
               {{ item.licenses }}
             </BaseBadge>
           </template>

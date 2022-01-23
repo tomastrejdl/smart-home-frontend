@@ -1,18 +1,18 @@
 <template>
-  <transition-group tag="ul" name="fade" class="px-4">
+  <transition-group tag="ul" name="fade" class="px-4" id="device-list">
     <li
       v-for="device in devices"
       :key="device._id"
-      class="px-4 py-3 max-w-md mx-auto my-2 flex flex-col rounded-lg bg-blur-brighter"
+      class="device-list-item bg-blur-brighter flex flex-col max-w-md px-4 py-3 mx-auto my-2 rounded-lg"
     >
-      <div class="w-full flex justify-between items-center">
-        <div class="flex justify-start items-center">
+      <div class="flex items-center justify-between w-full">
+        <div class="flex items-center justify-start">
           <ion-icon
             class="px-3"
             name="hardware-chip-outline"
             size="large"
           ></ion-icon>
-          <span class="font-bold text-lg"> {{ device.name }}</span>
+          <span class="text-lg font-bold"> {{ device.name }}</span>
         </div>
         <span
           class="font-bold text-red-500"
@@ -21,22 +21,23 @@
           {{ device.isOnline ? 'online' : 'offline' }}</span
         >
         <button
-          class="hover:bg-red-400 font-bold py-1 px-2 rounded-full focus:outline-none"
+          class="delete-device hover:bg-red-400 focus:outline-none px-2 py-1 font-bold rounded-full"
           @click="removeDevice(device)"
         >
           <ion-icon name="trash-outline"></ion-icon>
         </button>
       </div>
       <div
-        class="w-full flex justify-start items-center mt-2 px-4 pt-2 border-t border-gray-600"
+        class="flex items-center justify-start w-full px-4 pt-2 mt-2 border-t border-gray-600"
       >
         <span class="text-gray-600">Mac address: {{ device.macAddress }}</span>
       </div>
     </li>
     <li key="button">
       <router-link
+        id="search-devices"
         to="/devices/search"
-        class="max-w-md px-4 py-3 mx-auto my-2 text-white flex flex-row clickable-flex-5 rounded-lg bg-blur-darker"
+        class="clickable-flex-5 bg-blur-darker flex flex-row max-w-md px-4 py-3 mx-auto my-2 text-white rounded-lg"
       >
         <ion-icon class="px-3 text-2xl" name="add-circle-outline"></ion-icon>
         <span class="font-semibold">Add device</span>
