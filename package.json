@@ -21,7 +21,7 @@
     "axios": "^0.25.0",
     "core-js": "^3.20.3",
     "ionicons": "^5.5.4",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "plotly.js-dist": "^1.58.5",
     "register-service-worker": "^1.7.2",
     "tailwindcss": "^1.9.6",
